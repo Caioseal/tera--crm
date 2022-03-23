@@ -4,7 +4,7 @@ body {
 	background:#c8c8c8;
 	font:600 16px/18px 'Open Sans',sans-serif;
 	height: 100vh;
-	background: url(/imagens/pexels-tobias-bjørkli-2113566_l.jpg) center center no-repeat fixed;
+	background: url(../imagens/pexels-tobias-bjørkli-2113566_l.jpg) center center no-repeat fixed;
 	background-size: cover;
 	display: flex;
 	justify-content: center;
