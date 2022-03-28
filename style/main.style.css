@@ -1,5 +1,5 @@
 html {
-    height: 100%;
+    height: 100vh;
 }
 
 body {
@@ -11,6 +11,11 @@ body {
 
 #logo {
     height: 50px;
+}
+
+.icon-large {
+    font-size: 40px;
+    margin-left: 20px;
 }
 
 .material-icons {
@@ -32,7 +37,7 @@ body {
 }
 
 .board {
-    height: auto;
+    height: calc(100% - 80px);
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
@@ -46,7 +51,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
+    height: 98%;
     margin: 5px;
     vertical-align: top;
     white-space: nowrap;
@@ -68,7 +73,7 @@ body {
     justify-content: space-between;
 }
 
-.list-title h2{
+.list-title h2 {
     font-size: 20px;
 }
 
@@ -84,6 +89,7 @@ body {
     vertical-align: top;
     white-space: nowrap;
     width: 272px;
+    overflow-y: auto;
 }
 
 .list-item {
@@ -114,20 +120,101 @@ body {
 
 ::-webkit-scrollbar {
     width: 5px;
-  }
+}
 
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
-  }
-  
+}
+
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
-  }
+}
 
+.bar-graph .year {
+    -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+    -moz-animation: fade-in-text 2.2s 0.1s forwards;
+    animation: fade-in-text 2.2s 0.1s forwards;
+    opacity: 50;
+}
+
+.bar-graph-horizontal {
+    max-width: 100%;
+}
+
+.bar-graph-horizontal>div {
+    float: left;
+    width: 100%;
+}
+
+.bar-graph-horizontal .bar {
+    border-radius: 3px;
+    height: 30px;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    width: 0;
+}
+
+.bar-graph-one .bar::after {
+    -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+    -moz-animation: fade-in-text 2.2s 0.1s forwards;
+    animation: fade-in-text 2.2s 0.1s forwards;
+    color: #f2f2f2;
+    content: attr(data-percentage);
+    font-weight: 700;
+    position: absolute;
+    right: 25px;
+    top: 0px;
+}
+
+.bar-graph-one .bar-one .bar {
+    background-color: #64b2d1;
+    -webkit-animation: show-bar-one 1.2s 0.1s forwards;
+    -moz-animation: show-bar-one 1.2s 0.1s forwards;
+    animation: show-bar-one 1.2s 0.1s forwards;
+}
+
+.tiny-icon {
+    font-size: 1rem;
+}
+
+.list-item-name-align {
+    display: flex;
+    align-items: center;
+}
+
+.list-item-name-align label {
+    margin-left: 5px;
+}
+
+.list-item p {
+    margin-bottom: 8px;
+}
+
+/* Bar Graph Horizontal Animations */
+@-webkit-keyframes show-bar-one {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 69.6%;
+    }
+}
+
+@-webkit-keyframes fade-in-text {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
 
 footer {
     background-color: #222222;
-	color: white;
+    color: white;
     font-size: 14px;
     bottom: 0;
     position: fixed;
