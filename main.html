@@ -2,12 +2,13 @@
 <html lang="pt-br">
 
 <head>
-    <title>Title</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--Bootstrap import-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--Materialize Icons import-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="style/main.style.css">
     <title>CRM</title>
@@ -18,7 +19,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="#">
-                    <img src="imagens/Sem título.png" id="logo">
+                    <img src="imagens/Sem título.png" id="logo-navbar">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -31,13 +32,13 @@
                             <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link1</a>
+                            <a class="nav-link" href="#">Clientes</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link2</a>
+                            <a class="nav-link" href="#">Empresas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link3</a>
+                            <a class="nav-link" href="#">Relatórios</a>
                         </li>
                     </ul>
                     <form class="d-flex">
@@ -51,14 +52,59 @@
     </header>
     <div class="board">
 
-        <div class="list-column">
-            <div class="list-title container">
-                <h2>
-                    Prospecção
-                </h2>
-                <a href="#">
-                    <i class="material-icons" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">add_circle_outline</i>
+        <div class="list-wrapper">
+            <div class="list-content">
+
+                <div class="list-title container">
+                    <h2 class="list-title-h2">
+                        Sem contato
+                    </h2>
+                    <div class="dropdown">
+                        <i class="material-icons dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false"></i>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <section class="bar-graph bar-graph-horizontal bar-graph-one container">
+                    <div class="bar-one">
+                        <div class="bar" data-percentage="69.6%"></div>
+                    </div>
+                </section>
+
+                <div class="list-card">
+                    <div class="list-item">
+                        <div class="list-item-priority low">
+                            Baixa prioridade
+                        </div>
+
+                        <div class="list-item-name">
+                            <h3 class="client-name">Pacote para Gramado Chris Rock</h3>
+                            <i class="material-icons">more_horiz</i>
+                        </div>
+
+                        <h4 class="client-company">Bradesco S.A.</h4>
+
+                        <div class="list-item-name-align">
+                            <i class="material-icons tiny-icon">monetization_on</i>
+                            &nbsp;R$ 300,00
+                        </div>
+
+                        <div class="list-item-name-align">
+                            <i class="material-icons tiny-icon">date_range</i>
+                            &nbsp;31/12/2000
+                        </div>
+                    </div>
+                </div>
+
+                <a class="new-card" href="#exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <i class="material-icons">add_circle_outline</i>
+                    &nbsp;Novo cliente
                 </a>
 
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -72,391 +118,237 @@
                             </div>
 
                             <div class="modal-body text-dark">
+                                <form action="" method="post" id="signup" name="cadastroCliente">
+                                    <div class="row">
+                                        <div class="mb-3 col">
+                                            <label class="form-label" for="form-label">Tipo de cadastro</label>
+                                            <select id="nomeCliente" class="form-select"
+                                                aria-label="Default select example" name="tipoPessoa">
+                                                <option selected>Pessoa física</option>
+                                                <option value="1">Pessoa jurídica</option>
+                                            </select>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <label for="exampleFormControlInput1" class="form-label">Nome</label>
-                                    <input type="text" class="form-control" id="exampleFormControlInput1"
-                                        placeholder="Nome completo">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="exampleFormControlInput2" class="form-label">E-mail</label>
-                                    <input type="email" class="form-control" id="exampleFormControlInput1"
-                                        placeholder="nome@exemplo.com.br">
-                                </div>
-
-                                <div class="row">
-                                    <div class="mb-3 col">
-                                        <label for="exampleFormControlInput3" class="form-label">Valor</label>
-                                        <input type="number" class="form-control" id="exampleFormControlInput1"
-                                            placeholder="R$ 300,00">
+                                        <div class="mb-3 col">
+                                            <label for="exampleFormControlInput1" class="form-label">CPF</label>
+                                            <input type="number" class="form-control" id="exampleFormControlInput1"
+                                                placeholder="000.000.000-00">
+                                        </div>
                                     </div>
 
-                                    <div class="mb-3 col">
-                                        <label for="exampleFormControlInput4" class="form-label">Data limite</label>
-                                        <input type="datetime-local" class="form-control" id="exampleFormControlInput1"
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Nome</label>
+                                        <input type="text" class="form-control" id="form-name" name="name"
+                                            placeholder="Nome completo">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput1" class="form-label">Nome nas
+                                            comunicações</label>
+                                        <input type="text" class="form-control" id="exampleFormControlInput1"
+                                            placeholder="Como o cliente prefere ser chamado?">
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="mb-3 col-6">
+                                            <label for="" class="form-label">Telefone</label>
+                                            <input type="number" class="form-control" name="" id=""
+                                                placeholder="+55 11 99999-9999">
+                                        </div>
+                                        <div class="mv-3 col-6">
+                                            <label for="" class="form-label">WhatsApp</label>
+                                            <input type="number" class="form-control" name="" id=""
+                                                placeholder="+55 11 99999-9999">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlInput2" class="form-label">E-mail</label>
+                                        <input type="email" class="form-control" id="exampleFormControlInput1"
                                             placeholder="nome@exemplo.com.br">
                                     </div>
-                                </div>
 
+                                    <div class="row">
+                                        <div class="mb-3 col-6">
+                                            <label for="exampleFormControlInput5" class="form-label">Produto</label>
+                                            <select class="form-select">
+                                                <option>Passagem para</option>
+                                                <option value="1">Fretamento de ônibus para</option>
+                                                <option value="2">Pacote para</option>
+                                                <option value="3">Hospedagem em</option>
+                                            </select>
+                                        </div>
 
-                                <div class="mb-3">
-                                    <label for="exampleFormControlTextarea1" class="form-label">Comentários</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
-                                </div>
+                                        <div class="mb-3 col-6">
+                                            <div>
+                                                <label for="exampleFormControlInput6" class="form-label">Destino</label>
+                                                <select class="form-select" aria-label="Default select example">
+                                                    <option selected>Recife</option>
+                                                    <option value="1">Gramado</option>
+                                                    <option value="2">Paris</option>
+                                                    <option value="3">Frankfurt</option>
+                                                </select>
+                                            </div>
+                                        </div>
 
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary">Salvar</button>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="mb-3 col-6">
+                                            <label for="exampleFormControlInput3" class="form-label">Valor</label>
+                                            <input type="number" class="form-control" id="exampleFormControlInput1"
+                                                placeholder="R$ 300,00">
+                                        </div>
+
+                                        <div class="mb-3 col-6">
+                                            <label for="exampleFormControlInput4" class="form-label">Próximo
+                                                contato</label>
+                                            <input type="datetime-local" class="form-control"
+                                                id="exampleFormControlInput1" placeholder="nome@exemplo.com.br">
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="mb-3 col-6">
+                                            <label for="" class="form-label">Forma de contato</label>
+                                            <select class="form-select" aria-label="Default select example"
+                                                id="forma-contato">
+                                                <option value="0">E-mail</option>
+                                                <option value="1">Ligação</option>
+                                                <option value="2">WhatsApp</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3 col-6">
+                                            <label for="" class="form-label">Ação</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="0">Enviar cotação</option>
+                                                <option value="1">Questionar necessidade</option>
+                                                <option value="2">Confirmar produto escolhido</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="mb-3 col-6">
+                                            <label for="" class="form-label">Prioridade</label>
+                                            <select class="form-select" aria-label="Default select example">
+                                                <option value="0">Baixa prioridade</option>
+                                                <option value="1">Média priodade</option>
+                                                <option value="2">Alta prioridade</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlTextarea1" class="form-label">Comentários</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1"
+                                            rows="2"></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Salvar</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-
-            </div>
-            <section class="bar-graph bar-graph-horizontal bar-graph-one container">
-                <div class="bar-one">
-                    <div class="bar" data-percentage="69.6%"></div>
-                </div>
-            </section>
-            
-            <div class="list-wrapper">
-                <div class="list-item">
-                    <div class="list-item-name">
-                        <h3 class="client-name">Chris Rock</h3>
-                        <i class="material-icons">delete</i>
-                    </div>
-
-                    <div class="list-item-name-align">
-                        <i class="material-icons tiny-icon">email</i>
-                        <label for="email">E-mail</label>
-                    </div>
-                    <p class="client-mail">chrisrock@gmail.com</p>
-
-                    <div class="list-item-name-align">
-                        <i class="material-icons tiny-icon">contact_phone</i>
-                        <label for="telefone">Telefone</label>
-                    </div>
-                    <p class="client-fone">+55(11)99999-9999</p>
-
-                    <div class="list-item-name-align">
-                        <i class="material-icons tiny-icon">monetization_on</i>
-                        <label for="telefone">Valor</label>
-                    </div>
-                    <p class="client-fone">R$ 300,00</p>
-
-                    <div class="list-item-name-align">
-                        <i class="material-icons tiny-icon">date_range</i>
-                        <label for="data">Data limite</label>
-                    </div>
-                    <p>31/12/2000</p>
-
-                    <div class="list-item-name-align">
-                        <i class="material-icons tiny-icon">message</i>
-                        <label for="mensagem">Mensagem</label>
-                    </div>
-                    <p class="client-message">Olá, meu nome é Chris! Gostaria de receber uma ligação</p>
-                </div>
-
-                <div class="list-item">
-                    <div class="list-item-name">
-                        <h3 class="client-name">Will Smith</h3>
-                        <i class="material-icons">delete</i>
-                    </div>
-
-                    <div class="list-item-name-align">
-                        <i class="material-icons tiny-icon">email</i>
-                        <label for="email">E-mail</label>
-                    </div>
-                    <p class="client-mail">willsmith@yahoo.com</p>
-
-                    <div class="list-item-name-align">
-                        <i class="material-icons tiny-icon">contact_phone</i>
-                        <label for="telefone">Telefone</label>
-                    </div>
-                    <p class="client-fone">+55(11)88888-8888</p>
-
-                    <div class="list-item-name-align">
-                        <i class="material-icons tiny-icon">monetization_on</i>
-                        <label for="telefone">Valor</label>
-                    </div>
-                    <p class="client-fone">R$ 200,00</p>
-
-                    <div class="list-item-name-align">
-                        <i class="material-icons tiny-icon">date_range</i>
-                        <label for="data">Data limite</label>
-                    </div>
-                    <p>31/12/2000</p>
-
-                    <div class="list-item-name-align">
-                        <i class="material-icons tiny-icon">message</i>
-                        <label for="mensagem">Mensagem</label>
-                    </div>
-                    <p class="client-message">Olá, meu nome é Will! Gostaria de receber uma ligação</p>
-                </div>
-
-                <div class="list-item">
-                    <div class="list-item-name">
-                        <h3 class="client-name">Rochelle</h3>
-                        <i class="material-icons">delete</i>
-                    </div>
-
-                    <div class="list-item-name-align">
-                        <i class="material-icons tiny-icon">email</i>
-                        <label for="email">E-mail</label>
-                    </div>
-                    <p class="client-mail">rochelle@gmail.com</p>
-
-                    <div class="list-item-name-align">
-                        <i class="material-icons tiny-icon">contact_phone</i>
-                        <label for="telefone">Telefone</label>
-                    </div>
-                    <p class="client-fone">+55(11)77777-7777</p>
-
-                    <div class="list-item-name-align">
-                        <i class="material-icons tiny-icon">monetization_on</i>
-                        <label for="telefone">Valor</label>
-                    </div>
-                    <p class="client-fone">R$ 100,00</p>
-
-                    <div class="list-item-name-align">
-                        <i class="material-icons tiny-icon">date_range</i>
-                        <label for="data">Data limite</label>
-                    </div>
-                    <p>31/12/2000</p>
-
-                    <div class="list-item-name-align">
-                        <i class="material-icons tiny-icon">message</i>
-                        <label for="mensagem">Mensagem</label>
-                    </div>
-                    <p class="client-message">Olá, meu nome é Rochelle! Gostaria de receber uma ligação</p>
-                </div>
-
             </div>
         </div>
 
-        <div class="list-column">
-            <div class="list-title container">
-                <h2>
-                    Nova Venda
-                </h2>
-                <a href="#">
+        <div class="list-wrapper">
+            <div class="list-content">
+
+                <div class="list-title container">
+                    <h2 class="list-title-h2">
+                        Sem contato
+                    </h2>
+                    <div class="dropdown">
+                        <i class="material-icons dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false"></i>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <section class="bar-graph bar-graph-horizontal bar-graph-one container">
+                    <div class="bar-one">
+                        <div class="bar" data-percentage="69.6%"></div>
+                    </div>
+                </section>
+
+                <div class="list-card">
+                    <div class="list-item">
+                        <div class="list-item-priority low">
+                            Baixa prioridade
+                        </div>
+
+                        <div class="list-item-name">
+                            <h3 class="client-name">Pacote para Gramado Chris Rock</h3>
+                            <i class="material-icons">more_horiz</i>
+                        </div>
+
+                        <h4 class="client-company">Bradesco S.A.</h4>
+
+                        <div class="list-item-name-align">
+                            <i class="material-icons tiny-icon">monetization_on</i>
+                            &nbsp;R$ 300,00
+                        </div>
+
+                        <div class="list-item-name-align">
+                            <i class="material-icons tiny-icon">date_range</i>
+                            &nbsp;31/12/2000
+                        </div>
+                    </div>
+                </div>
+
+                <a class="new-card" href="#exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <i class="material-icons">add_circle_outline</i>
+                    &nbsp;Novo cliente
                 </a>
-            </div>
 
-            <section class="bar-graph bar-graph-horizontal bar-graph-one container">
-                <div class="bar-one">
-                    <div class="bar" data-percentage="69.6%"></div>
-                </div>
-            </section>
-
-            <div class="list-wrapper">
-                <div class="list-item">
-                    <div class="list-item-name">
-                        <h3 class="client-name">Silvio Santos</h3>
-                        <i class="material-icons">delete</i>
-                    </div>
-                    <label for="email">email:</label>
-                    <p class="client-mail">silvio.santos@gmail.com</p>
-                    <label for="fone">telefone:</label>
-                    <p class="client-fone">+55(11)99999-9999</p>
-                    <label for="mensagem">Mensagem</label>
-                    <p class="client-message">Olá, meu nome é Silvio! Gostaria de receber uma ligação</p>
-                </div>
-
-                <div class="list-item">
-                    <div class="list-item-name">
-                        <h3 class="client-name">John Wick</h3>
-                        <i class="material-icons">delete</i>
-                    </div>
-                    <label for="email">email:</label>
-                    <p class="client-mail">john.wick@gmail.com</p>
-                    <label for="fone">telefone:</label>
-                    <p class="client-fone">+55(11)99999-9999</p>
-                    <label for="mensagem">Mensagem</label>
-                    <p class="client-message">Olá, meu nome é John! Gostaria de receber uma ligação</p>
-                </div>
+               
             </div>
         </div>
 
-        <div class="list-column">
-            <div class="list-title container">
-                <h2>
-                    Análise
-                </h2>
-                <a href="#">
+        <div class="list-wrapper">
+            <div class="list-content">
+
+                <div class="list-title container">
+                    <h2 class="list-title-h2">
+                        Análise
+                    </h2>
+                    <div class="dropdown">
+                        <i class="material-icons dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                            aria-expanded="false"></i>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <section class="bar-graph bar-graph-horizontal bar-graph-one container">
+                    <div class="bar-one">
+                        <div class="bar" data-percentage="69.6%"></div>
+                    </div>
+                </section>
+
+                <div class="list-card" id="teste">
+                </div>
+
+                <a class="new-card" id="adicionarCliente" href="#exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     <i class="material-icons">add_circle_outline</i>
+                    &nbsp;Novo cliente
                 </a>
-            </div>
 
-            <section class="bar-graph bar-graph-horizontal bar-graph-one container">
-                <div class="bar-one">
-                    <div class="bar" data-percentage="69.6%"></div>
-                </div>
-
-            </section>
-            <div class="list-wrapper">
-                <div class="list-item">
-                    <div class="list-item-name">
-                        <h3 class="client-name">Harry Potter</h3>
-                        <i class="material-icons">delete</i>
-                    </div>
-                    <label for="email">email:</label>
-                    <p class="client-mail">potter@gmail.com</p>
-                    <label for="fone">telefone:</label>
-                    <p class="client-fone">+55(11)99999-9999</p>
-                    <label for="mensagem">Mensagem</label>
-                    <p class="client-message">Olá, meu nome é Harry! Gostaria de receber uma ligação</p>
-                </div>
-
-                <div class="list-item">
-                    <div class="list-item-name">
-                        <h3 class="client-name">Gandalf</h3>
-                        <i class="material-icons">delete</i>
-                    </div>
-                    <label for="email">email:</label>
-                    <p class="client-mail">gandalf@gmail.com</p>
-                    <label for="fone">telefone:</label>
-                    <p class="client-fone">+55(11)99999-9999</p>
-                    <label for="mensagem">Mensagem</label>
-                    <p class="client-message">Olá, meu nome é Gandalf! Gostaria de receber uma ligação</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="list-column">
-            <div class="list-title container">
-                <h2>
-                    Pagamento
-                </h2>
-                <a href="#">
-                    <i class="material-icons">add_circle_outline</i>
-                </a>
-            </div>
-
-            <section class="bar-graph bar-graph-horizontal bar-graph-one container">
-                <div class="bar-one">
-                    <div class="bar" data-percentage="69.6%"></div>
-                </div>
-            </section>
-
-            <div class="list-wrapper">
-                <div class="list-item">
-                    <div class="list-item-name">
-                        <h3 class="client-name">Darth Vader</h3>
-                        <i class="material-icons">delete</i>
-                    </div>
-                    <label for="email">email:</label>
-                    <p class="client-mail">vader@gmail.com</p>
-                    <label for="fone">telefone:</label>
-                    <p class="client-fone">+55(11)99999-9999</p>
-                    <label for="mensagem">Mensagem</label>
-                    <p class="client-message">Olá, meu nome é Dart! Gostaria de receber uma ligação</p>
-                </div>
-
-                <div class="list-item">
-                    <div class="list-item-name">
-                        <h3 class="client-name">Grogu</h3>
-                        <i class="material-icons">delete</i>
-                    </div>
-                    <label for="email">email:</label>
-                    <p class="client-mail">grogu@gmail.com</p>
-                    <label for="fone">telefone:</label>
-                    <p class="client-fone">+55(11)99999-9999</p>
-                    <label for="mensagem">Mensagem</label>
-                    <p class="client-message">Olá, meu nome é Grogu! Gostaria de receber uma ligação</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="list-column">
-            <div class="list-title container">
-                <h2>
-                    Entrega
-                </h2>
-                <a href="#">
-                    <i class="material-icons">add_circle_outline</i>
-                </a>
-            </div>
-
-            <section class="bar-graph bar-graph-horizontal bar-graph-one container">
-                <div class="bar-one">
-                    <div class="bar" data-percentage="69.6%"></div>
-                </div>
-            </section>
-
-            <div class="list-wrapper">
-                <div class="list-item">
-                    <div class="list-item-name">
-                        <h3 class="client-name">John Doe Junior</h3>
-                        <i class="material-icons">delete</i>
-                    </div>
-                    <label for="email">email:</label>
-                    <p class="client-mail">johndoe.jr@gmail.com</p>
-                    <label for="fone">telefone:</label>
-                    <p class="client-fone">+55(11)99999-9999</p>
-                    <label for="mensagem">Mensagem</label>
-                    <p class="client-message">Olá, meu nome é John! Gostaria de receber uma ligação</p>
-                </div>
-
-                <div class="list-item">
-                    <div class="list-item-name">
-                        <h3 class="client-name">Mandalorian</h3>
-                        <i class="material-icons">delete</i>
-                    </div>
-                    <label for="email">email:</label>
-                    <p class="client-mail">mando@gmail.com</p>
-                    <label for="fone">telefone:</label>
-                    <p class="client-fone">+55(11)99999-9999</p>
-                    <label for="mensagem">Mensagem</label>
-                    <p class="client-message">Olá, meu nome é Mando! Gostaria de receber uma ligação</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="list-column">
-            <div class="list-title container">
-                <h2>
-                    Encerrado
-                </h2>
-                <a href="#">
-                    <i class="material-icons">add_circle_outline</i>
-                </a>
-            </div>
-
-            <section class="bar-graph bar-graph-horizontal bar-graph-one container">
-                <div class="bar-one">
-                    <div class="bar" data-percentage="69.6%"></div>
-                </div>
-            </section>
-
-            <div class="list-wrapper">
-                <div class="list-item">
-                    <div class="list-item-name">
-                        <h3 class="client-name">Luke Skywalker</h3>
-                        <i class="material-icons">delete</i>
-                    </div>
-                    <label for="email">email:</label>
-                    <p class="client-mail">luke@gmail.com</p>
-                    <label for="fone">telefone:</label>
-                    <p class="client-fone">+55(11)99999-9999</p>
-                    <label for="mensagem">Mensagem</label>
-                    <p class="client-message">Olá, meu nome é Luke! Gostaria de receber uma ligação</p>
-                </div>
-
-                <div class="list-item">
-                    <div class="list-item-name">
-                        <h3 class="client-name">Han Solo</h3>
-                        <i class="material-icons">delete</i>
-                    </div>
-                    <label for="email">email:</label>
-                    <p class="client-mail">han.solo@gmail.com</p>
-                    <label for="fone">telefone:</label>
-                    <p class="client-fone">+55(11)99999-9999</p>
-                    <label for="mensagem">Mensagem</label>
-                    <p class="client-message">Olá, meu nome é Han! Gostaria de receber uma ligação</p>
-                </div>
             </div>
         </div>
     </div>
@@ -467,6 +359,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
+    <script src="form.js"></script>
 </body>
 
 </html>
