@@ -10,7 +10,7 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!--Materialize Icons import-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="style/main.style.css">
+    <link rel="stylesheet" href="style/business.style.css">
     <title>Negócios</title>
 </head>
 
@@ -32,7 +32,7 @@
                             <a class="nav-link active" aria-current="page" href="business.html">Negócios</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="cliente.html">Clientes</a>
+                            <a class="nav-link" href="customer.html">Clientes</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Empresas</a>
@@ -50,12 +50,21 @@
                     </form>
                     <div class="d-flex align-items-center">
                         <i class="icon-large material-icons">account_circle</i>
-                        <p class="text-white">Nome do Usuário</p>
+                        <p class="text-white" >Nome do Usuário</p>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
+
+    <div class="container-fluid bg-header second-nav d-flex align-items-center justify-content-evenly">
+        <div class="container d-flex align-items-center justify-content-evenly">
+            <div class="text-white">
+                Negócios ativos: <span id="qttActive">1</span>
+            </div>
+            <button type="button" class="btn btn-primary"><i class="icon-small material-icons" id="button-add">add</i>Adicionar </button>
+        </div>
+    </div>
 
     <div class="board">
 
@@ -76,6 +85,7 @@
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </div>
+                    <i class="material-icons button-transition">add_circle_outline</i>
                 </div>
 
                 <!--Total-->
@@ -92,11 +102,13 @@
                             Baixa prioridade
                         </div>
 
-                        <!--Produto e nome do cliente-->
+                        <!--Produto e botão de opções-->
                         <div class="list-item-name">
-                            <h3 class="client-name">Pacote para Gramado<br> Chris Rock</h3>
+                            <h3 class="client-name">Pacote para Gramado</h3>
                             <i class="material-icons delete">more_horiz</i>
                         </div>
+
+                        <h4 class="client-name">Chris Rock</h4>
 
                         <!--Empresa-->
                         <h4 class="client-company">Bradesco S.A.</h4>
@@ -113,11 +125,11 @@
                             &nbsp;31/12/2000
                         </div>
                     </div>
+                    
                 </div>
 
                 <!--Rodapé da coluna-->
-                <a class="new-card" href="#exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    id="newClient">
+                <a class="new-card" href="#exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal" id="newClient">
                     <i class="material-icons">add_circle_outline</i>
                     &nbsp;Novo negócio
                 </a>
@@ -141,17 +153,17 @@
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </div>
+                    <i class="material-icons button-transition">add_circle_outline</i>
                 </div>
 
                 <section class="container d-flex justify-content-center">
-                    <h3>R$ 300,00</h3>
+                    <h3>R$ 0,00</h3>
                 </section>
 
                 <div class="list-card" id="teste">
                 </div>
 
-                <a class="new-card" href="#exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                    id="newClient">
+                <a class="new-card" href="#exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal" id="newClient">
                     <i class="material-icons">add_circle_outline</i>
                     &nbsp;Novo negócio
                 </a>
@@ -195,8 +207,7 @@
                         <div class="row">
                             <div class="mb-3 col-6">
                                 <label for="form-preferedName" class="form-label">Nome nas comunicações</label>
-                                <input type="text" class="form-control" id="form-preferedName"
-                                    placeholder="Como o cliente prefere ser chamado?">
+                                <input type="text" class="form-control" id="form-preferedName">
                             </div>
 
                             <div class="mb-3 col-6">
@@ -309,13 +320,13 @@
         </div>
     </div>
 
+    <script src="app/business.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
-        <script src="app/newCard.js"></script>
 </body>
 
 </html>

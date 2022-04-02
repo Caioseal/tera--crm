@@ -20,6 +20,10 @@ body {
     margin-left: 20px;
 }
 
+.icon-small {
+    font-size: 1rem;
+}
+
 .material-icons {
     color: white;
 }
@@ -41,12 +45,41 @@ body {
 /*BODY CSS*/
 
 .board {
-    height: calc(100% - 80px);
+    height: calc(100% - 160px);
     overflow-x: auto;
     overflow-y: hidden;
     white-space: nowrap;
     display: flex;
     flex-direction: row;
+}
+
+.bg-header {
+    background-color: #f2f2f231;
+}
+
+.button-transition {
+    position: absolute;
+    left: 255px;
+    top: 40px;
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+.list-content:hover .button-transition {
+    transform: translate(10px);
+    opacity: 100;
+}
+
+#qttActive {
+    padding: 2px 8px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,.4);
+    background: rgba(255,255,255,.15);
+}
+
+.second-nav {
+    height: 80px;
+    padding: 1rem;
 }
 
 .list-wrapper {
@@ -97,6 +130,7 @@ body {
 .list-title {
     margin-top: 5px;
     width: 100%;
+    position: relative;
     display: flex;
     justify-content: space-between;
 }
@@ -173,50 +207,6 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
-}
-
-.bar-graph .year {
-    -webkit-animation: fade-in-text 2.2s 0.1s forwards;
-    -moz-animation: fade-in-text 2.2s 0.1s forwards;
-    animation: fade-in-text 2.2s 0.1s forwards;
-    opacity: 50;
-}
-
-.bar-graph-horizontal {
-    max-width: 100%;
-}
-
-.bar-graph-horizontal>div {
-    float: left;
-    width: 100%;
-}
-
-.bar-graph-horizontal .bar {
-    border-radius: 3px;
-    height: 30px;
-    float: left;
-    overflow: hidden;
-    position: relative;
-    width: 0;
-}
-
-.bar-graph-one .bar::after {
-    -webkit-animation: fade-in-text 2.2s 0.1s forwards;
-    -moz-animation: fade-in-text 2.2s 0.1s forwards;
-    animation: fade-in-text 2.2s 0.1s forwards;
-    color: #f2f2f2;
-    content: attr(data-percentage);
-    font-weight: 700;
-    position: absolute;
-    right: 25px;
-    top: 0px;
-}
-
-.bar-graph-one .bar-one .bar {
-    background-color: #64b2d1;
-    -webkit-animation: show-bar-one 1.2s 0.1s forwards;
-    -moz-animation: show-bar-one 1.2s 0.1s forwards;
-    animation: show-bar-one 1.2s 0.1s forwards;
 }
 
 .tiny-icon {
