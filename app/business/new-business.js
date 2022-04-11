@@ -1,7 +1,7 @@
 let businessQuantity = 1;
 
 //Create a new Business
-let addButtonlist = document.getElementsByClassName('new-card')
+let addButtonlist = document.getElementsByClassName('salvar')
 
 for (let i = 0; i < addButtonlist.length; i++) {
     addButtonlist[i].addEventListener('click', addBusiness)

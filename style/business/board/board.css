@@ -1,0 +1,8 @@
+.board {
+    height: calc(100% - 160px);
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+}
