@@ -60,7 +60,7 @@
                     </form>
                     <div class="d-flex align-items-center">
                         <i class="icon-large material-icons">account_circle</i>
-                        <p class="text-white" >Nome do Usuário</p>
+                        <p class="text-white">Nome do Usuário</p>
                     </div>
                 </div>
             </div>
@@ -204,7 +204,7 @@
 
                             <div class="mb-3 col">
                                 <label for="form-cpf" class="form-label">CPF</label>
-                                <input type="number" class="form-control" id="form-cpf" placeholder="000.000.000-00">
+                                <input type="text" class="form-control" id="form-cpf" placeholder="000.000.000-00">
                             </div>
                         </div>
 
@@ -230,13 +230,13 @@
                         <div class="row">
                             <div class="mb-3 col-6">
                                 <label for="form-phone" class="form-label">Telefone</label>
-                                <input type="number" class="form-control" id="form-phone"
+                                <input type="text" class="form-control" id="form-phone"
                                     placeholder="+55 11 99999-9999">
                             </div>
 
                             <div class="mv-3 col-6">
                                 <label for="form-whatsNumber" class="form-label">WhatsApp</label>
-                                <input type="number" class="form-control" id="form-whatsNumber"
+                                <input type="text" class="form-control" id="form-whatsNumber"
                                     placeholder="+55 11 99999-9999">
                             </div>
                         </div>
@@ -280,8 +280,7 @@
                             <div class="mb-3 col-6">
                                 <label for="form-nextContact" class="form-label">Próximo
                                     contato</label>
-                                <input type="datetime-local" class="form-control" id="form-nextContact"
-                                    placeholder="nome@exemplo.com.br">
+                                <input type="datetime-local" class="form-control" id="form-nextContact">
                             </div>
                         </div>
 
@@ -310,9 +309,9 @@
                             <div class="mb-3 col-6">
                                 <label for="form-priority" class="form-label">Prioridade</label>
                                 <select class="form-select" aria-label="Default select example" id="form-priority">
-                                    <option value="Baixa Prioridade">Baixa prioridade</option>
-                                    <option value="Média Prioridade">Média prioridade</option>
-                                    <option value="Alta Prioridade">Alta prioridade</option>
+                                    <option value="Baixa prioridade">Baixa prioridade</option>
+                                    <option value="Média prioridade">Média prioridade</option>
+                                    <option value="Alta prioridade">Alta prioridade</option>
                                 </select>
                             </div>
                         </div>
@@ -321,10 +320,10 @@
                             <label for="form-comment" class="form-label">Comentários</label>
                             <textarea class="form-control" id="form-comment" rows="2"></textarea>
                         </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" id="salvar">Salvar</button>
-                        </div>
                     </form>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary" type="button" id="salvar" data-bs-dismiss="modal">Salvar</button>
+                    </div>
                 </div>
             </div>
         </div>
