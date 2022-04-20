@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--Bootstrap import-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!--Materialize Icons import-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!--CSS Import-->
+    <link rel="stylesheet" href="../style/head/head.css">
+    <link rel="stylesheet" href="../style/header/nav.css">
+    <link rel="stylesheet" href="../style/business/second.nav/menu.css">
+    <link rel="stylesheet" href="../style/business/board/board.css">
+    <link rel="stylesheet" href="../style/business/board/scrollbar.css">
+    <link rel="stylesheet" href="../style/business/board/column/list-column.css">
+    <link rel="stylesheet" href="../style/business/board/item/list-item.css">
+
+    <title>Negócios</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img src="../imagens/Sem título.png" id="logo-navbar">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="business.html">Negócios</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="customer.html">Clientes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="companies.html">Empresas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="products.html">Produtos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="reports.html">Relatórios</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                        <button class="btn btn-outline-success" id="btn-search" type="submit">Buscar</button>
+                    </form>
+
+                    <div class="dropdown">
+                        <a href="" class="d-flex align-items-center" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="icon-large material-icons" id="loginImage">account_circle</i>
+                            <p class="text-white me-auto mb-2 mb-lg-0 ">John Doe</p>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="../index.html">Sair</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid bg-header second-nav d-flex align-items-center justify-content-evenly">
+        <div class="container d-flex align-items-center justify-content-evenly">
+            <div class="text-white">
+                Negócios ativos: <span id="qttActive">1</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="board">
+
+        <!--First Column-->
+        <div class="list-wrapper">
+            <div class="list-content">
+                <!--Title-->
+                <div class="list-title container">
+                    <h2 class="list-title-h2" id="h2SemContato">
+                        Sem contato
+                       
+                    </h2>
+                    <div class="dropdown">
+                        <i class="material-icons dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            <li><a class="dropdown-item" href="#" onclick="alterarNome('divSemContato', 'txtSemContato', 'h2SemContato')">Editar</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                    <i class="material-icons button-transition">add_circle_outline</i>
+                </div>
+
+                <!--Total-->
+                <section class="container d-flex justify-content-center">
+                    <h3>R$ 300,00</h3>
+                </section>
+
+                <!--Lista de itens-->
+                <div class="list-card">
+                    <!--Cada item-->
+                    <div class="list-item">
+                        <!--Prioridade-->
+                        <div class="list-item-priority low">
+                            Baixa prioridade
+                        </div>
+
+                        <!--Produto e botão de opções-->
+                        <div class="list-item-name">
+                            <h3 class="client-name">Pacote para Gramado</h3>
+                            <i class="material-icons delete" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal1">more_horiz</i>
+                        </div>
+
+                        <h4 class="client-name">Chris Rock</h4>
+
+                        <!--Empresa-->
+                        <h4 class="client-company">Bradesco S.A.</h4>
+
+                        <!--Valor-->
+                        <div class="list-item-name-align">
+                            <i class="material-icons tiny-icon">monetization_on</i>
+                            &nbsp;R$ 300,00
+                        </div>
+
+                        <!--Data do próximo evento-->
+                        <div class="list-item-name-align">
+                            <i class="material-icons tiny-icon">date_range</i>
+                            &nbsp;31/12/2000
+                        </div>
+                    </div>
+                </div>
+
+                <!--Rodapé da coluna-->
+                <a class="new-card" href="#exampleModal" data-bs-toggle="modal" data-bs-target="#exampleModal" id="newClient">
+                    <i class="material-icons">add_circle_outline</i>&nbsp;Novo negócio
+                </a>
+
+            </div>
+        </div>
+
+        <!--Modal com formulário-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title text-dark" id="exampleModalLabel">Novo Negócio</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body text-dark">
+                        <form id="signup" name="cadastroCliente">
+                            <div class="row">
+                                <div class="mb-3 col">
+                                    <label for="form-registerType" class="form-label">Tipo de cadastro</label>
+                                    <select id="form-registerType" class="form-select" onchange="changeCPFlabel()">
+                                        <option selected value="Pessoa Física">Pessoa física</option>
+                                        <option value="Pessoa Jurídica" >Pessoa jurídica</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3 col">
+                                    <label for="form-cpf" class="form-label" >CPF</label>
+                                    <input type="text" class="form-control" id="form-cpf" placeholder="000.000.000-00">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="mb-3 col-6">
+                                    <label for="form-name" class="form-label">Nome</label>
+                                    <input type="text" class="form-control" id="form-name" name="name" placeholder="Nome completo" aria-required="true">
+                                </div>
+                                <div class="mb-3 col-6">
+                                    <label for="form-company" class="form-label">Empresa</label>
+                                    <input type="text" class="form-control" id="form-company" placeholder="Empresa S.A">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="mb-3 col-6">
+                                    <label for="form-phone" class="form-label">Telefone</label>
+                                    <input type="text" class="form-control" id="form-phone" placeholder="+55 11 99999-9999">
+                                </div>
+                                <div class="mb-3 col-6">
+                                    <label for="form-Email" class="form-label">E-mail</label>
+                                    <input type="email" class="form-control" id="form-Email" placeholder="nome@exemplo.com.br">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="mb-3 col-6">
+                                    <label for="form-products" class="form-label">Produto</label>
+                                    <select class="form-select" id="form-products" aria-required="true">
+                                        <option value="Passagem para Recife">Passagem para Recife</option>
+                                        <option value="Fretamento de ônibus para Gramado">Fretamento de ônibus para Gramado</option>
+                                        <option value="Pacote para Paraty">Pacote para Paraty</option>
+                                        <option value="Hospedagem em Paris">Hospedagem em Paris</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 col-6">
+                                    <label for="form-priority" class="form-label">Prioridade</label>
+                                    <select class="form-select" aria-label="Default select example" id="form-priority" aria-required="true">
+                                        <option value="Baixa prioridade">Baixa prioridade</option>
+                                        <option value="Média prioridade">Média prioridade</option>
+                                        <option value="Alta prioridade">Alta prioridade</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="mb-3 col-6">
+                                    <label for="form-price" class="form-label">Valor</label>
+                                    <input type="number" class="form-control" id="form-price" placeholder="R$ 300,00" aria-required="true">
+                                </div>
+
+                                <div class="mb-3 col-6">
+                                    <label for="form-nextContact" class="form-label">Próximo contato</label>
+                                    <input type="datetime-local" class="form-control" id="form-nextContact" aria-required="true">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="mb-3 col-6">
+                                    <label for="form-preferedContact" class="form-label">Forma de contato</label>
+                                    <select class="form-select" aria-label="Default select example" id="form-preferedContact" aria-required="true">
+                                        <option value="E-mail">E-mail</option>
+                                        <option value="Ligação">Ligação</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3 col-6">
+                                    <label for="form-action" class="form-label">Ação</label>
+                                    <select class="form-select" aria-label="Default select example" id="form-action" aria-required="true">
+                                        <option value="Enviar cotação">Enviar cotação</option>
+                                        <option value="Questionar necessidade">Questionar necessidade</option>
+                                        <option value="Confirmar produto escolhido">Confirmar produto escolhido</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="form-comment" class="form-label">Comentários</label>
+                                <textarea class="form-control" id="form-comment" rows="2"></textarea>
+                            </div>
+                        </form>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" type="button" id="salvar"
+                                data-bs-dismiss="modal">Salvar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="../app/business/new-business.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+            integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

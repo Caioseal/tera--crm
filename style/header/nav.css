@@ -32,3 +32,9 @@
     background-color: #d93d86;
     color: #f2f2f2;
 }
+
+@media screen and (max-width: 990px) {
+    #loginImage {
+        display: none;
+    }
+}

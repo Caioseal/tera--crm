@@ -1,21 +1,18 @@
 class Card {
-    constructor(registerType = "" ,cpf = "", fullName = "", preferedName = "", companyName = "", phone = "", whatsNumber = "", email = "", product = "", destination = "", price = "", nextContact = "", preferedContact = "", action = "", priority = "", comment = "") {
-        this.registerType
-        this.cpf
-        this.fullName
-        this.preferedName
-        this.companyName
-        this.phone
-        this.whatsNumber
-        this.email
-        this.product
-        this.destination
-        this.price
-        this.nextContact
-        this.preferedContact
-        this.action
-        this.priority
-        this.comment
+    constructor(registerType = "", cpf = "", fullName = "", preferedName = "", companyName = "", phone = "", whatsNumber = "", email = "", product = "", destination = "", price = "", nextContact = "", preferedContact = "", action = "", priority = "", comment = "") {
+        this.registerType = registerType
+        this.cpf = cpf
+        this.fullName = fullName
+        this.companyName = companyName
+        this.phone = phone
+        this.email = email
+        this.product = product
+        this.price = price
+        this.nextContact = nextContact
+        this.preferedContact = preferedContact
+        this.action = action
+        this.priority = priority
+        this.comment = comment
     }
 }
 
@@ -49,18 +46,15 @@ function addNewCard() {
     card.registerType = selectResponses[0]
     card.cpf = inputResponses[1].value
     card.fullName = inputResponses[2].value
-    card.preferedName = inputResponses[3].value
-    card.companyName = inputResponses[4].value
-    card.phone = inputResponses[5].value
-    card.whatsNumber = inputResponses[6].value
-    card.email = inputResponses[7].value
+    card.companyName = inputResponses[3].value
+    card.phone = inputResponses[4].value
+    card.email = inputResponses[5].value
     card.product = selectResponses[1].value
-    card.destination = selectResponses[2].value
-    card.price = inputResponses[8].value
-    card.nextContact = inputResponses[9].value
+    card.price = inputResponses[6].value
+    card.nextContact = inputResponses[7].value
     card.preferedContact = selectResponses[3].value
     card.action = selectResponses[4].value
-    card.priority = selectResponses[5].value
+    card.priority = selectResponses[2].value
     card.comment = document.getElementById('form-comment').value
 
     listCardObject.push(card)
@@ -81,15 +75,13 @@ function addNewCard() {
     businessItemPriority.innerHTML = card.priority
     businessItem.appendChild(businessItemPriority)
     businessItem.innerHTML += "<div class='list-item-name'><h3 class='client-name'>" +
-                            card.product + " " + card.destination + "</h3><i class='material-icons delete'>more_horiz</i></div><h4 class='client-name'>" +
-                            card.preferedName + "</h4><h4 class='client-company'>" +
-                            card.companyName + "</h4><div class='list-item-name-align'><i class='material-icons tiny-icon'>monetization_on</i>&nbsp;R$ " +
-                            card.price + "</div><div class='list-item-name-align'><i class='material-icons tiny-icon'>date_range</i>&nbsp;" +
-                            card.nextContact + "</div>"
+        card.product + "</h3><i class='material-icons delete'>more_horiz</i></div><h4 class='client-name'>" +
+        card.fullName + "</h4><h4 class='client-company'>" +
+        card.companyName + "</h4><div class='list-item-name-align'><i class='material-icons tiny-icon'>monetization_on</i>&nbsp;R$ " +
+        card.price + "</div><div class='list-item-name-align'><i class='material-icons tiny-icon'>date_range</i>&nbsp;" +
+        card.nextContact + "</div>"
 
-    console.log(listCard)
     listCard.appendChild(businessItem)
-    console.log(listCardObject)
 
     updateQuantity()
     updateBusinessList()
@@ -101,17 +93,18 @@ function updateQuantity() {
     document.getElementById('qttActive').innerText = businessQuantity
 }
 
-//Create a new Column
+//Create the event to add a new column
 let addColumnList = document.getElementsByClassName('button-transition')
 
 for (let j = 0; j < addColumnList.length; j++) {
     addColumnList[j].addEventListener('click', addColumn)
 }
 
+//Add a new Column
 function addColumn() {
     const businessColumn = document.createElement('div')
     businessColumn.setAttribute('class', 'list-wrapper')
-    businessColumn.innerHTML = "<div class='list-content'><div class='list-title container'><h2 class='list-title-h2'>Análise</h2><div class='dropdown'><i class='material-icons dropdown-toggle' id='dropdownMenuButton1' data-bs-toggle='dropdown' aria-expanded='false'></i><ul class='dropdown-menu' aria-labelledby='dropdownMenuButton1'><li><a class='dropdown-item' href='#'>Action</a></li><li><a class='dropdown-item' href='#'>Another action</a></li><li><a class='dropdown-item' href='#'>Something else here</a></li></ul></div><i class='material-icons button-transition'>add_circle_outline</i></div><section class='container d-flex justify-content-center'><h3>R$ 0,00</h3></section><div class='list-card' id='teste'></div><a class='new-card' href='#exampleModal' data-bs-toggle='modal' data-bs-target='#exampleModal' id='newClient'><i class='material-icons'>add_circle_outline</i>&nbsp;Novo negócio</a></div>"
+    businessColumn.innerHTML = "<div class='list-content'><div class='list-title container'><h2 class='list-title-h2'>Nova Coluna</h2><div class='dropdown'><i class='material-icons dropdown-toggle' id='dropdownMenuButton1' data-bs-toggle='dropdown' aria-expanded='false'></i><ul class='dropdown-menu' aria-labelledby='dropdownMenuButton1'><li><a class='dropdown-item' href='#'>Action</a></li><li><a class='dropdown-item' href='#'>Another action</a></li><li><a class='dropdown-item' href='#'>Something else here</a></li></ul></div><i class='material-icons button-transition'>add_circle_outline</i></div><section class='container d-flex justify-content-center'><h3>R$ 0,00</h3></section><div class='list-card' id='teste'></div><a class='new-card' href='#exampleModal' data-bs-toggle='modal' data-bs-target='#exampleModal' id='newClient'><i class='material-icons'>add_circle_outline</i>&nbsp;Novo negócio</a></div>"
 
     let board = this.parentNode.parentNode.parentNode.parentNode
     let currentColumn = this.parentNode.parentNode.parentNode
@@ -140,8 +133,25 @@ function updateBusinessList() {
 //Update Column List
 function updateColumnList() {
     addColumnList = document.getElementsByClassName('button-transition')
-    console.log(addButtonlist.length)
     for (let j = 0; j < addColumnList.length; j++) {
         addColumnList[j].addEventListener('click', addColumn)
     }
+}
+
+function changeCPFlabel() {
+    let registerType = document.getElementById('form-registerType').value
+    console.log(registerType)
+
+    if (registerType == "Pessoa Jurídica") {
+        let registerTypeElement = document.getElementById('form-cpf')
+        console.log(registerTypeElement)
+        registerTypeElement.value = 'teste'
+        console.log('teste2')
+    }
+}
+
+function alterarNome(idDiv, idTxt, idH2) {
+    let teste = document.querySelector('#' + idH2);
+    console.log(teste)
+    teste.innerHTML = " <div id='" + idDiv + "'>  <input type='text' id='" + idTxt + "' value='" + teste.innerHTML + "'></div>"
 }
