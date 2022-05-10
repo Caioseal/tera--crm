@@ -2,7 +2,7 @@
     box-sizing: border-box;
     display: inline-block;
     height: 100%;
-    margin: 5px;
+    margin: 0.5rem;
     vertical-align: top;
     white-space: nowrap;
     width: 280px;
@@ -45,8 +45,4 @@
     text-decoration: none;
     color: #f2f2f2;
     transform: scale(1.1);
-}
-
-.campoOculto {
-    display: none;
 }

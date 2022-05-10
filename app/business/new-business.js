@@ -1,5 +1,5 @@
 class Card {
-    constructor(registerType = "", cpf = "", fullName = "", preferedName = "", companyName = "", phone = "", whatsNumber = "", email = "", product = "", destination = "", price = "", nextContact = "", preferedContact = "", action = "", priority = "", comment = "") {
+    constructor(registerType = "", cpf = "", fullName = "", companyName = "", phone = "", whatsNumber = "", email = "", product = "", destination = "", price = "", nextContact = "", preferedContact = "", action = "", priority = "", comment = "") {
         this.registerType = registerType
         this.cpf = cpf
         this.fullName = fullName
@@ -138,20 +138,3 @@ function updateColumnList() {
     }
 }
 
-function changeCPFlabel() {
-    let registerType = document.getElementById('form-registerType').value
-    console.log(registerType)
-
-    if (registerType == "Pessoa Jurídica") {
-        let registerTypeElement = document.getElementById('form-cpf')
-        console.log(registerTypeElement)
-        registerTypeElement.value = 'teste'
-        console.log('teste2')
-    }
-}
-
-function alterarNome(idDiv, idTxt, idH2) {
-    let teste = document.querySelector('#' + idH2);
-    console.log(teste)
-    teste.innerHTML = " <div id='" + idDiv + "'>  <input type='text' id='" + idTxt + "' value='" + teste.innerHTML + "'></div>"
-}
