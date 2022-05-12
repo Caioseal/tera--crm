@@ -5,32 +5,15 @@ const cardSchema = new mongoose.Schema(
         id: {
             type: String
         },
-        registerType: {
-            type: String
-        },
-        cpf: {
-            type: Number
-        },
-        fullName: {
-            type: String
-        },
-        companyName: {
-            type: String
-        },
-        phone: {
-            type: Number
-        },
-        email: {
-            type: String
+        customer: {
+            type: mongoose.Schema.Types.ObjectId, ref: 'clients'
         },
         product: {
-            type: String
-        },
-        price: {
-            type: Number
+            type: mongoose.Schema.Types.ObjectId, ref: 'products'
         },
         nextContact: {
-            type: String
+            type: Date, 
+            default: new Date()
         },
         preferedContact: {
             type: String

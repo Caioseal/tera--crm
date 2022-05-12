@@ -3,6 +3,8 @@ import cards from "../Models/cardSchema.js";
 class CardController {
     static listarCards = (req, res) => {
         cards.find()
+            .populate('customer')
+            .populate('product')
             .exec((erro, cards) => {
                 if (erro) {
                     res.status(400).send({ message: `${erro.message}` })
@@ -28,7 +30,7 @@ class CardController {
         const card = new cards(req.body)
         card.save((erro) => {
             if (erro) {
-                res.status(500).send({message: `${erro.message}`})
+                res.status(500).send({ message: `${erro.message}` })
             } else {
                 res.status(201).send(card.toJSON())
             }
@@ -39,9 +41,9 @@ class CardController {
         const id = req.params.id
         cards.findByIdAndUpdate(id, { $set: req.body }, (erro) => {
             if (erro) {
-                res.status(500).send({ message: erro.message})
+                res.status(500).send({ message: erro.message })
             } else {
-                res.status(200).send({ message: "Card atualizado com sucesso"})
+                res.status(200).send({ message: "Card atualizado com sucesso" })
             }
         })
     }
@@ -50,9 +52,9 @@ class CardController {
         const id = req.params.id
         cards.findByIdAndDelete(id, (erro) => {
             if (erro) {
-                res.status(500).send({ message: erro.message})
+                res.status(500).send({ message: erro.message })
             } else {
-                res.status(200).send({message: "Card excluído com sucesso"})
+                res.status(200).send({ message: "Card excluído com sucesso" })
             }
         })
     }

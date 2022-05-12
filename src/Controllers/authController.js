@@ -2,7 +2,7 @@ import userSchema from '../models/userSchema.js'
 import bcrypt from 'bcrypt'
 import jwt from "jsonwebtoken"
 
-const SECRET = "JEELp6e+7Q6DyM0/1huE7Y5/EMrZvyvqC/9u2YIt1RtE1m/Go5vXvpBAKQw2L2BrX28uOTiGjHMhxx9R3sMBNeLxhDJtfY8zCO8NvDvvZExODk5qDwg43A1KwESHejDhBAnLOwjTv00UqpQwI/7FrzTats3Cqf6cyiiRlkE6JrM="
+const SECRET = process.env.SECRET
 
 class authController {
 
