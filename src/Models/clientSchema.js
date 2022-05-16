@@ -29,3 +29,5 @@ const clientSchema = new mongoose.Schema (
 const clients = mongoose.model('clients', clientSchema)
 
 export default clients
+
+//Front - Nome completo, empresa, telefone e e-mail

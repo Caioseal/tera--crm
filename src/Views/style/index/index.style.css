@@ -37,15 +37,14 @@ a {
 	max-width:400px;
 	min-height:550px;
 	position:relative;
-	top: -50px;
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
 
 .login-html{
 	width:100%;
-	height:100%;
+	height:90%;
 	position:absolute;
-	padding: 40px;
+	padding: 40px 40px 20px 40px;
 	background:#1c2326ea;
 }
 

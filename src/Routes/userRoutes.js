@@ -8,5 +8,10 @@ router
     .get("/all", userController.getAll)
     .post("/create", userController.createUser)
     .post("/login", authController.login)
+    .get("/:id", userController.getUserById)
+    .patch("/update/:id", userController.updateUserById)
+    .delete("/delete/:id", userController.deleteUserById)
 
 export default router
+
+// authController.checkToken, 
