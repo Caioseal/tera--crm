@@ -1,11 +1,11 @@
 import express from "express"
-import db from "./src/config/dbConnect.js"
+import db from "./back-end/src/config/dbConnect.js"
 import chalk from 'chalk'
-import cardsRoutes from "./src/Routes/cardsRoutes.js"
+import cardsRoutes from "./back-end/src/Routes/cardsRoutes.js"
 import cors from "cors"
-import userRoutes from "./src/Routes/userRoutes.js"
-import productsRoutes from "./src/Routes/productsRoutes.js"
-import clientRoutes from "./src/Routes/clientRoutes.js"
+import userRoutes from "./back-end/src/Routes/userRoutes.js"
+import productsRoutes from "./back-end/src/Routes/productsRoutes.js"
+import clientRoutes from "./back-end/src/Routes/clientRoutes.js"
 
 const port = process.env.PORT || 3000
 const app = express()
@@ -36,4 +36,3 @@ db.once("open", () => {
     console.log(chalk.bgCyan(`    MongoDB Atlas conectado com sucesso
 `))
 })
-
