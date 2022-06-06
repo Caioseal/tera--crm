@@ -1,0 +1,227 @@
+.board {
+    height: calc(100% - 160px);
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+}
+
+#myPlot {
+    width: 100%;
+}
+
+/*HEADER CSS*/
+
+html {
+    height: 100vh;
+}
+
+body {
+    height: 100%;
+    background: url('../../imagens/pexels-felix-mittermeier-956999.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#logo-navbar {
+    height: 50px;
+}
+
+#button-add{
+    position: relative;
+    top: 3px;
+    margin-right: 0.5rem;
+}
+
+.icon-large {
+    font-size: 40px;
+    margin-left: 20px;
+}
+
+.icon-small {
+    font-size: 1rem;
+}
+
+.material-icons {
+    color: white;
+}
+
+.material-icons:hover {
+    cursor: pointer;
+}
+
+#btn-search {
+    color: #d93d86;
+    border: 1px solid #d93d86;
+}
+
+#btn-search:hover {
+    background-color: #d93d86;
+    color: #f2f2f2;
+}
+
+/*BODY CSS*/
+
+.board {
+    background-color: #f2f2f2;
+    height: calc(50%);
+}
+
+.list-wrapper {
+    box-sizing: border-box;
+    display: inline-block;
+    height: 100%;
+    margin: 5px;
+    vertical-align: top;
+    white-space: nowrap;
+    width: 280px;
+}
+
+.list-content {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 98%;
+    background-color: #f2f2f231;
+    color: #f2f2f2;
+    border-radius: 10px;
+    width: 280px;
+}
+
+.list-card {
+    box-sizing: border-box;
+    margin-top: 10px;
+    vertical-align: top;
+    white-space: nowrap;
+    width: 272px;
+    overflow-y: auto;
+}
+
+.list-item {
+    box-sizing: border-box;
+    padding: 5px;
+    margin: 5px;
+    background-color: #1c2326c9;
+    color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    white-space: normal;
+    border-radius: 10px;
+    border-left: 5px solid #4369d9;
+}
+
+.list-title {
+    margin-top: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-item-name {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-title-h2 {
+    font-size: 20px;
+}
+
+.list-item-priority {
+    border-radius: 50px;
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.d-flex p {
+    margin-bottom: 0;
+    margin-left: 5px;
+}
+
+.low {
+    background-color: green;
+}
+
+.medium {
+    background-color: yellow;
+}
+
+.high {
+    background-color: red;
+}
+
+.client-name {
+    font-size: 18px;
+    margin: 0px;
+}
+
+.client-company {
+    font-size: 14px;
+}
+
+.list-item-name-align {
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+}
+
+.list-item-name-align label {
+    margin-left: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(to right, #93b3bf, #4369d9, #93b3bf);
+    box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5);
+    border-radius: 100px;
+}
+
+::-webkit-scrollbar {
+    height: 8px;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.tiny-icon {
+    font-size: 1rem;
+}
+
+.new-card {
+    text-decoration: none;
+    color: #f2f2f2;
+    display: flex;
+    margin-top: 8px;
+}
+
+.new-card:hover {
+    text-decoration: none;
+    color: #f2f2f2;
+}
+
+footer {
+    background-color: #222222;
+    color: white;
+    font-size: 14px;
+    bottom: 0;
+    position: fixed;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 999;
+}
+
+a {
+    text-decoration: none;
+}

@@ -5,7 +5,7 @@ import authController from "../Controllers/authController.js"
 const router = express.Router()
 
 router
-    .get("/all", userController.getAll)
+    .get("/all", authController.checkToken, userController.getAll)
     .post("/create", userController.createUser)
     .post("/login", authController.login)
     .get("/:id", userController.getUserById)

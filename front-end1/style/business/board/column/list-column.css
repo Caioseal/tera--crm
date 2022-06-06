@@ -1,0 +1,48 @@
+.list-wrapper {
+    box-sizing: border-box;
+    display: inline-block;
+    height: 100%;
+    margin: 0.5rem;
+    vertical-align: top;
+    white-space: nowrap;
+    width: 280px;
+}
+
+.list-content {
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 98%;
+    background-color: #f2f2f231;
+    color: #f2f2f2;
+    border-radius: 10px;
+    width: 280px;
+}
+
+.button-transition {
+    position: absolute;
+    left: 255px;
+    top: 40px;
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+.list-content:hover .button-transition {
+    transform: translate(10px);
+    opacity: 100;
+}
+
+.new-card {
+    text-decoration: none;
+    color: #f2f2f2;
+    display: flex;
+    margin-top: 8px;
+    transition: all ease-in-out 0.2s;
+}
+
+.new-card:hover {
+    text-decoration: none;
+    color: #f2f2f2;
+    transform: scale(1.1);
+}
