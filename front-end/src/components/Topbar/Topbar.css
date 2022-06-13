@@ -1,0 +1,34 @@
+.navbar {
+    height: 80px;
+}
+
+#logo-navbar {
+    height: 50px;
+}
+
+#btn-search {
+    color: #d93d86;
+    border: 1px solid #d93d86;
+}
+
+#btn-search:hover {
+    background-color: #d93d86;
+    color: #f2f2f2;
+}
+
+#logo {
+    height: 40px;
+    width: 40px;
+    color: #f2f2f2;
+}
+
+.userNameLogo {
+    width: 200px;
+    padding: 0;
+}
+
+.userName {
+    margin-bottom: 0px;
+    margin-left: 5px;
+    color: #f2f2f2;
+}

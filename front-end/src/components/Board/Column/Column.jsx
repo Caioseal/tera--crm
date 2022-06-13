@@ -1,11 +1,24 @@
+import { useState, useEffect } from 'react'
+
 import { DropdownMenu } from './Dropdown/Dropdown'
 import PlusCircleOutlined from '@ant-design/icons/lib/icons/PlusCircleOutlined'
-import { Card } from './Card'
-import { ModalNewBusiness } from './Modal/Modal'
+import { Card } from './Card/Card'
+import { ModalForm } from './Modal/ModalForm'
 
 import './Column.css'
 
 export function Column() {
+    const [cards, setCards] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    useEffect(() => {
+        fetch('https://62a66cee430ba53411d49d16.mockapi.io/TeraCRM/cards')
+            .then(res => res.json())
+            .then(data => { setCards(data) })
+        setLoading(false)
+    }, [])
+
+    console.log(cards)
 
     return (
         <div className="list-wrapper">
@@ -21,24 +34,20 @@ export function Column() {
                 </section>
 
                 <div className="list-card">
-                    <Card></Card>
-                    <Card></Card>
-                    <Card></Card>
-                    <Card></Card>
-                    <Card></Card>
-                    <Card></Card>
-                    <Card></Card>
-                    <Card></Card>
-                    <Card></Card>
+
+                    {loading
+                        ? 'Carregando'
+                        : cards.map((card) =>
+                            <Card
+                                key={card.id}
+                                formPriority={card.dogName}
+                            />
+                        )
+                    }
+
                 </div>
-                <ModalNewBusiness />
+                <ModalForm />
             </div>
         </div>
     )
 }
-
-/*  <a className="new-card d-flex justify-content-around align-items-center" id="newClient" onClick={showModal} type='primary'>
-
-<PlusCircleOutlined />
-<p id='newBusiness'>Novo Negócio</p>
-</a>*/

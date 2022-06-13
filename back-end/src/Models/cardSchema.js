@@ -3,14 +3,35 @@ import mongoose from "mongoose"
 const cardSchema = new mongoose.Schema(
     {
         id: mongoose.Schema.Types.ObjectId,
-        customer: {
-            type: mongoose.Schema.Types.ObjectId, ref: 'clients'
+
+        //Customer
+        registerType: {
+            type: String
         },
-        product: {
-            type: mongoose.Schema.Types.ObjectId, ref: 'products'
+        documentNumber: {
+            type: Number
         },
+        fullName: {
+            type: String
+        },
+        companyName: {
+            type: String
+        },
+
+        //Product
+        productType: {
+            type: String
+        },
+        priority: {
+            type: String
+        },
+        productPrice: {
+            type: Number
+        },
+        
+        //Card
         nextContact: {
-            type: Date, 
+            type: Date,
             default: new Date()
         },
         preferedContact: {
@@ -19,15 +40,9 @@ const cardSchema = new mongoose.Schema(
         action: {
             type: String
         },
-        priority: {
-            type: String
-        },
         comment: {
             type: String
-        },
-        products: [{
-            type: mongoose.Schema.Types.ObjectId, ref: 'products'
-        }]
+        }
     }
 )
 
