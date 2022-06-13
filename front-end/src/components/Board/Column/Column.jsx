@@ -12,7 +12,7 @@ export function Column() {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetch('https://62a66cee430ba53411d49d16.mockapi.io/TeraCRM/cards')
+        fetch('http://localhost:3000/getCards')
             .then(res => res.json())
             .then(data => { setCards(data) })
         setLoading(false)
@@ -39,9 +39,15 @@ export function Column() {
                         ? 'Carregando'
                         : cards.map((card) =>
                             <Card
-                                key={card.id}
-                                formPriority={card.dogName}
+                                key={card._id}
+                                formPriority={card.priority}
+                                productType={card.productType}
+                                fullName={card.fullName}
+                                companyName={card.companyName}
+                                productPrice={card.productPrice}
+                                nextContact={card.nextContact}
                             />
+
                         )
                     }
 

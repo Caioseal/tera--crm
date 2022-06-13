@@ -56,9 +56,9 @@ export function NewBusinessForm() {
                         <Form.Group className="mb-3" controlId="formPriority">
                             <Form.Label>Prioridade</Form.Label>
                             <Form.Select aria-label="Default select example">
-                                <option value="Baixa prioridade">Baixa prioridade</option>
-                                <option value="Média prioridade">Média prioridade</option>
-                                <option value="Alta prioridade">Alta prioridade</option>
+                                <option value="low">Baixa prioridade</option>
+                                <option value="medium">Média prioridade</option>
+                                <option value="high">Alta prioridade</option>
                             </Form.Select>
                         </Form.Group>
                     </Col>

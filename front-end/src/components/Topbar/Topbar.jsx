@@ -5,47 +5,58 @@ import FormControl from 'react-bootstrap/FormControl';
 import Form from 'react-bootstrap/Form';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Row, Col } from 'antd';
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import { Link } from "react-router-dom";
 
 import './Topbar.css';
 
 export function Topbar() {
 	return (
-		<Navbar bg="dark" expand="lg" variant='dark' className='navbar'>
-			<Container>
-				<Navbar.Brand href="#"><img id='logo-navbar' src={require("./img/logo.png")} /></Navbar.Brand>
-				<Navbar.Toggle aria-controls="navbarScroll" />
-				<Navbar.Collapse id="navbarScroll">
-					<Nav
-						className="me-auto my-2 my-lg-0"
-						style={{ maxHeight: '100px' }}
-						navbarScroll
+		<>
+			<Navbar key='lg' bg="dark" variant='dark' expand='lg' className="mb-3">
+				<Container>
+					<Navbar.Brand href="#"><img id='logo-navbar' src={require("./img/logo.png")} alt='' /></Navbar.Brand>
+					<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-$'lg'`} />
+					<Navbar.Offcanvas
+						id={`offcanvasNavbar-expand-$'lg'`}
+						aria-labelledby={`offcanvasNavbarLabel-expand-$'lg'`}
+						placement="end"
 					>
-						<Nav.Link href="#action1">Negócios</Nav.Link>
-						<Nav.Link href="#action2">Clientes</Nav.Link>
-						<Nav.Link href="#action3">Produtos</Nav.Link>
-						<Nav.Link href="#action4">Relatórios</Nav.Link>
-					</Nav>
-					<Form className="d-flex">
-						<FormControl
-							type="search"
-							placeholder="Buscar"
-							className="me-2"
-							aria-label="Search"
-						/>
-					</Form>
-					<Nav.Link href="#action5" className='userNameLogo'>
-						<Row gutter={16} align="middle">
-							<Col span={6} >
-							<Col span={6}><AccountCircleIcon id='logo' className='col-8' /></Col>
-							</Col>
-							<Col span={18}>
-								<p className='userName'>John Doe</p>
-							</Col>
-						</Row>
-					</Nav.Link>
-				</Navbar.Collapse>
-			</Container>
-		</Navbar>
+						<Offcanvas.Header closeButton>
+							<Offcanvas.Title id={`offcanvasNavbarLabel-expand-$'lg'`}>
+								TERA CRM
+							</Offcanvas.Title>
+						</Offcanvas.Header>
+						<Offcanvas.Body>
+							<Nav className="justify-content-end flex-grow-1 pe-3 navLink">
+								<Link to='/business' className='navLink'>Negócios</Link>
+								<Link to='/customer' className='navLink'>Clientes</Link>
+								<Link to='/product' className='navLink'>Produtos</Link>
+								<Link to='/report' className='navLink'>Relatórios</Link>
+							</Nav>
+							<Form className="d-flex">
+								<FormControl
+									type="search"
+									placeholder="Search"
+									className="me-2 search-input"
+									aria-label="Search"
+								/>
+							</Form>
+							<Nav.Link href="#action5" className='userNameLogo'>
+								<Row gutter={16} align="middle">
+									<Col span={6} >
+										<Col span={6}><AccountCircleIcon id='logo' className='col-8' /></Col>
+									</Col>
+									<Col span={18}>
+										<p className='userName'>John Doe</p>
+									</Col>
+								</Row>
+							</Nav.Link>
+						</Offcanvas.Body>
+
+					</Navbar.Offcanvas>
+				</Container>
+			</Navbar>
+		</>
 	)
 }
-

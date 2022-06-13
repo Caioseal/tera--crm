@@ -28,7 +28,6 @@ export function ModalForm() {
     };
 
     const handleCancel = () => {
-        console.log('Clicked cancel button');
         setVisible(false);
     };
 
@@ -66,25 +65,27 @@ export function ModalForm() {
         })
     }
 
-        return (
-            <>
-                <a className="new-card d-flex justify-content-around align-items-center" id="newClient" onClick={showModal} type='primary'>
+    return (
+        <>
+            <div className='new-card'>
+                <a className=" d-flex justify-content-around align-items-center" id="newClient" onClick={showModal} type='primary'>
                     <PlusCircleOutlined />
                     <p id='newBusiness'>Novo Negócio</p>
                 </a>
+            </div>
 
-                <Modal
-                    title="Novo Negócio"
-                    visible={visible}
-                    onOk={handleOk}
-                    confirmLoading={confirmLoading}
-                    onCancel={handleCancel}
-                    width={'80%'}
-                >
+            <Modal
+                title="Novo Negócio"
+                visible={visible}
+                onOk={handleOk}
+                confirmLoading={confirmLoading}
+                onCancel={handleCancel}
+                width={'80%'}
+            >
 
-                    <>{modalText}</>
+                <>{modalText}</>
 
-                </Modal>
-            </>
-        );
-    };
+            </Modal>
+        </>
+    );
+};

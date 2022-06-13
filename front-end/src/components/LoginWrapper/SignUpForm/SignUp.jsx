@@ -1,26 +1,29 @@
+import './SignUp.css';
+
 export function SignUpForm() {
     return (
         <div className="sign-up-htm">
             <div className="group">
-                <label for="user" className="label">E-mail</label>
-                <input id="user" type="text" className="input" />
+                <label htmlFor="userEmail" className="label">E-mail</label>
+                <input id="userCreateEmail" type="text" className="input" />
             </div>
             <div className="group">
-                <label for="pass" className="label">Senha</label>
-                <input id="pass" type="password" className="input" data-type="password" />
+                <label htmlFor="password" className="label">Senha</label>
+                <input id="userCreatePassword" type="password" className="input" data-type="password" />
             </div>
             <div className="group">
-                <label for="pass" className="label">Confirme a senha</label>
-                <input id="pass" type="password" className="input" data-type="password" />
+                <label htmlFor="passwordConfirmed" className="label">Confirme a senha</label>
+                <input id="userPasswordConfirmed" type="password" className="input" data-type="password" />
             </div>
             <div className="group" >
-                <a href="front-end/html/business.html">
+                <p>
                     <input type="submit" className="button" value="Registrar" />
-                </a>
+                </p>
             </div>
             <div className="hr"></div>
             <div className="foot-lnk">
-                <label for="tab-1" /><a>Já é registrado?</a>
+                <label htmlFor="tab-1" />
+                <p>Já é registrado?</p>
             </div>
         </div>
     )

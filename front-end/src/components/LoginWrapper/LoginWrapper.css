@@ -24,11 +24,14 @@ a {
 
 .login-wrap{
 	margin:auto;
+	height: 300px;
+	width: 400px;
 	max-width:400px;
 	min-height:550px;
-	position:relative;
-	top: 50px;
-	height: 100px;
+	position:absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
 
@@ -39,7 +42,6 @@ a {
 .login-html{
 	height:100%;
 	padding: 40px 40px 20px 40px;
-
 	background:#1c2326ea;
 }
 
@@ -74,6 +76,7 @@ a {
 	margin:0 15px 10px 0;
 	display:inline-block;
 	border-bottom:2px solid transparent;
+	color: #6a6f8c;
 }
 
 .login-html .sign-in:checked + .tab,

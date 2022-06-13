@@ -3,9 +3,6 @@ import cards from "../Models/cardSchema.js";
 class CardController {
     static listarCards = (req, res) => {
         cards.find()
-            .populate('customer')
-            .populate('product')
-            .populate('products')
             .exec((erro, cards) => {
                 if (erro) {
                     res.status(400).send({ message: `${erro.message}` })

@@ -1,0 +1,17 @@
+.board {
+    height: calc(100%);
+    width: 100% !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+}
+
+#button-add {
+    margin-right: 0.25rem;
+}
+
+#textoParagrafo {
+    margin-bottom: 0px;
+}
