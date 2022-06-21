@@ -11,6 +11,8 @@ export function App() {
                 <Route path="/" element={<Login />} />
                 <Route path='/business' element={<Business />} />
                 <Route path='/product' element={<Product />} />
+                <Route path='/customer' element={<Product />} />
+                <Route path='/report' element={<Product />} />
             </Routes>
         </>
     )

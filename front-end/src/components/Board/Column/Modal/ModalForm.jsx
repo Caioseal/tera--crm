@@ -10,11 +10,14 @@ export function ModalForm() {
     const [visible, setVisible] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState(<NewBusinessForm />);
-    const [placeholder, setPlaceholder] = useState('')
+    const [placeholder, setPlaceholder] = useState('');
+    const [cardId, setCardId] = useState('');
 
     function showModal(e) {
         setVisible(true);
-        setPlaceholder(e.currentTarget.previousElementSibling)
+        let columnId = e.currentTarget.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
+        setPlaceholder(columnId)
+        console.log(placeholder)
     };
 
     function handleOk(e) {
@@ -44,7 +47,7 @@ export function ModalForm() {
         const formNextAction = document.getElementById('formNextAction').value;
         const formComments = document.getElementById('formComments').value;
 
-        fetch('http://localhost:3000/createCard', {
+        fetch(`http://localhost:3000/newCardByColumnId/${placeholder}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -63,6 +66,11 @@ export function ModalForm() {
                 comment: formComments,
             })
         })
+            .then(res => res.json())
+            .then(data => {
+                const cardId = data._id
+                setCardId({ cardId });
+            })
     }
 
     return (

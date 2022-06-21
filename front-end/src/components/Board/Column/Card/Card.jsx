@@ -1,7 +1,14 @@
 import { useState } from 'react'
 import { EllipsisOutlined, DollarOutlined, CalendarOutlined } from '@ant-design/icons'
+import { CardDropdown } from './CardDropdown/CardDropdown'
 
 import './Card.css'
+
+const priorityList = {
+    "low": "Baixa prioridade",
+    "medium": "Média prioridade",
+    "high": "Alta prioridade"
+}
 
 export function Card(
     { id = '',
@@ -12,24 +19,29 @@ export function Card(
         companyName = '',
         productType = '',
         priority = '',
-        productPrice = '',
+        productPrice = 0,
         nextContact = '',
         preferedContact = '',
         action = '',
         comment = '',
-    }) {
+    }) 
+    
+    {
     
     return (
         <div className="list-item">
 
+            <span className='displayNone'>{id}</span>
+
             <div className={`list-item-priority ${formPriority}`}>
-                {formPriority === 'low' ? 'Baixa prioridade' : formPriority ==='medium' ? 'Média prioridade' : 'Alta prioridade'}
+                {priorityList[formPriority] || priorityList.high }
             </div>
 
             <div className="list-item-name">
                 <h3 className="client-name">{productType}</h3>
-                <EllipsisOutlined id='EllipsisOutlined' />
+                <CardDropdown />
             </div>
+            
 
             <h4 className="client-name">{fullName}</h4>
 

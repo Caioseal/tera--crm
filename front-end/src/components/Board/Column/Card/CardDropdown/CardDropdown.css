@@ -1,0 +1,8 @@
+#card-dropdown {
+    height: 25px;
+    color: #f2f2f2 !important;
+}
+
+.dropdown-toggle::after {
+    color: #f2f2f2;
+}

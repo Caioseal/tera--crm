@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { SignUpForm } from '../SignUpForm/SignUp'
 
+import { Button, notification, Space } from 'antd';
+
 import './LoginForm.css'
 
 export function LoginForm() {
@@ -26,15 +28,24 @@ export function LoginForm() {
             body: JSON.stringify(loginData)
         }
 
+        const openNotificationWithIcon = (type) => {
+            notification[type]({
+              message: 'Ops! Usuário ou senha incorretos',
+              description:
+                'Verifique seu e-mail e senha.',
+            });
+          };
+
         await fetch(`http://localhost:3000/login`, options)
-            .then(response => {response.json()
-                if (response.status == 200) {        
+            .then(response => {
+                response.json()
+                if (response.status == 200) {
                     localStorage.setItem('user', JSON.stringify(userEmail))
                     setLogin(true)
                     return <Navigate to="/business" />
-                    
+
                 } else {
-                    console.log('Não autorizado')
+                    openNotificationWithIcon('error')
                 }
             })
             .catch(erro => {
@@ -44,8 +55,8 @@ export function LoginForm() {
     }
 
     if (isLogged && !error) {
-		return <Navigate to="/business" />
-	}
+        return <Navigate to="/business" />
+    } 
 
     return (
         <form className="login-form" onSubmit={handleLogin}>

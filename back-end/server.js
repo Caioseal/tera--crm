@@ -6,6 +6,7 @@ import cors from "cors"
 import userRoutes from "./src/Routes/userRoutes.js"
 import productsRoutes from "./src/Routes/productsRoutes.js"
 import clientRoutes from "./src/Routes/clientRoutes.js"
+import columnRoutes from "./src/Routes/columnRoutes.js"
 
 const port = process.env.PORT || 3000
 const app = express()
@@ -25,7 +26,8 @@ const routes = (app) => {
         cardsRoutes,
         userRoutes,
         productsRoutes,
-        clientRoutes
+        clientRoutes,
+        columnRoutes
     )
 }
 

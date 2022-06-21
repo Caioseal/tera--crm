@@ -76,3 +76,7 @@
 #EllipsisOutlined {
     font-size: 1.5rem;
 }
+
+.displayNone {
+    display: none;
+}

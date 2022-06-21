@@ -1,7 +1,8 @@
 import cards from "../Models/cardSchema.js";
+import columns from "../Models/columnSchema.js";
 
 class CardController {
-    static listarCards = (req, res) => {
+    static showAllCards = (req, res) => {
         cards.find()
             .exec((erro, cards) => {
                 if (erro) {
@@ -12,7 +13,7 @@ class CardController {
             })
     }
 
-    static listarCardsPorId = (req, res) => {
+    static showCardById = (req, res) => {
         const id = req.params.id
         cards.findById(id)
             .exec((erro, cards) => {
@@ -24,18 +25,25 @@ class CardController {
             })
     }
 
-    static createCard = (req, res) => {
+    static createCardByColumnId = (req, res) => {
         const card = new cards(req.body)
         card.save((erro) => {
             if (erro) {
                 res.status(500).send({ message: `${erro.message}` })
             } else {
                 res.status(201).send(card.toJSON())
+                console.log(card._id)
+
+                columns.findByIdAndUpdate(req.params.id, { $push: { cardList: card._id } }, (erro) => {
+                    if (erro) {
+                        res.status(500).send({ message: `${erro.message}` })
+                    } 
+                })
             }
         })
     }
 
-    static updateCard = (req, res) => {
+    static updateCardById = (req, res) => {
         const id = req.params.id
         cards.findByIdAndUpdate(id, { $set: req.body }, (erro) => {
             if (erro) {
@@ -46,7 +54,7 @@ class CardController {
         })
     }
 
-    static deleteCard = (req, res) => {
+    static deleteCardById = (req, res) => {
         const id = req.params.id
         cards.findByIdAndDelete(id, (erro) => {
             if (erro) {
@@ -70,7 +78,6 @@ class CardController {
                 }
             })
     }
-
 }
 
 export default CardController

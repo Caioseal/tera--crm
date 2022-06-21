@@ -13,9 +13,11 @@ import './Topbar.css';
 export function Topbar() {
 	return (
 		<>
-			<Navbar key='lg' bg="dark" variant='dark' expand='lg' className="mb-3">
+			<Navbar key='lg' bg="dark" variant='dark' expand='lg' className="mb-1">
 				<Container>
-					<Navbar.Brand href="#"><img id='logo-navbar' src={require("./img/logo.png")} alt='' /></Navbar.Brand>
+					<Link to="/business">
+						<img id='logo-navbar' src={require("./img/logo.png")} alt='' />
+					</Link>
 					<Navbar.Toggle aria-controls={`offcanvasNavbar-expand-$'lg'`} />
 					<Navbar.Offcanvas
 						id={`offcanvasNavbar-expand-$'lg'`}
@@ -37,7 +39,7 @@ export function Topbar() {
 							<Form className="d-flex">
 								<FormControl
 									type="search"
-									placeholder="Search"
+									placeholder="Pesquisar"
 									className="me-2 search-input"
 									aria-label="Search"
 								/>
