@@ -107,7 +107,7 @@ export function NewBusinessForm() {
                     <Col xs={24} sm={24}>
                         <Form.Group className="mb-3" controlId="formComments">
                             <Form.Label>Comentários</Form.Label>
-                            <Form.Control as="textarea" rows={3} />
+                            <Form.Control as="textarea" rows={1} />
                         </Form.Group>
 
                     </Col>

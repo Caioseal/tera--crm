@@ -24,6 +24,7 @@ export function Card(
         preferedContact = '',
         action = '',
         comment = '',
+        setUpdate
     }) 
     
     {
@@ -39,7 +40,7 @@ export function Card(
 
             <div className="list-item-name">
                 <h3 className="client-name">{productType}</h3>
-                <CardDropdown />
+                <CardDropdown setUpdate={setUpdate} />
             </div>
             
 

@@ -23,6 +23,6 @@ const columnsSchema = new mongoose.Schema(
     }
 )
 
-const columns = mongoose.model("columns", columnsSchema)
+const Columns = mongoose.model("columns", columnsSchema)
 
-export default columns
+export default Columns

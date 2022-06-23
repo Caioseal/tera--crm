@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { Modal } from 'antd';
 import PlusCircleOutlined from '@ant-design/icons/lib/icons/PlusCircleOutlined'
 import { NewBusinessForm } from './NewBusinessForm';
-import { Card } from '../Card/Card';
 
 import './ModalForm.css';
 
-export function ModalForm() {
+export function ModalForm({ setUpdate }) {
     const [visible, setVisible] = useState(false);
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState(<NewBusinessForm />);
@@ -71,6 +70,8 @@ export function ModalForm() {
                 const cardId = data._id
                 setCardId({ cardId });
             })
+
+            setUpdate(true)
     }
 
     return (

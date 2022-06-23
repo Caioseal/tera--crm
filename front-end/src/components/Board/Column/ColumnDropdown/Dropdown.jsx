@@ -1,13 +1,11 @@
 import React from 'react';
 import Dropdown from 'react-bootstrap/Dropdown'
-
+import { ConfirmationModal } from '../Card/CardDropdown/ConfirmationModal/ConfirmationModal';
 import './Dropdown.css'
 
 function editColumnName(e) {
     let placeholder = e.target
-
     let columnName = placeholder.parentElement.parentElement.previousElementSibling
-    let columnName1 = columnName.firstElementChild
     columnName.innerHTML = "<div><input type='text' id='inputNameColumn' value='" + columnName.innerText + "'></div>"
     document.getElementById('inputNameColumn').focus()
     document.getElementById('inputNameColumn').addEventListener('blur', (e) => {
@@ -15,16 +13,15 @@ function editColumnName(e) {
     })
 }
 
-export function DropdownMenu() {
+export function DropdownMenu({ setUpdate }) {
     return (
         <Dropdown>
             <Dropdown.Toggle variant='link' id="dropdown-basic">
             </Dropdown.Toggle>
 
             <Dropdown.Menu variant='dark'>
-                <Dropdown.Item >Adicionar coluna</Dropdown.Item>
                 <Dropdown.Item onClick={editColumnName}>Editar nome </Dropdown.Item>
-                <Dropdown.Item >Excluir coluna</Dropdown.Item>
+                <ConfirmationModal setUpdate={setUpdate}  />
             </Dropdown.Menu>
         </Dropdown>
     )
