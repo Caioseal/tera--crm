@@ -7,6 +7,7 @@
 
 .login-form .group{
 	margin-bottom:15px;
+	color: #f2f2f2;
 }
 
 .login-form .group .label,
@@ -23,6 +24,10 @@
 	padding:15px 20px;
 	border-radius:25px;
 	background:rgba(255,255,255,.1);
+}
+
+.group .input {
+	background:red;
 }
 
 .login-form .group input[data-type="password"]{

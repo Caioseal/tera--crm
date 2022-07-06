@@ -12,22 +12,33 @@ export function Board() {
         fetch('http://localhost:3000/getAllColumns')
             .then(res => res.json())
             .then(data => { setColumns(data) })
-            setUpdate(false)
+        setUpdate(false)
     }, [update])
+
 
     return (
         <div className="board">
 
-            {columns.map((column) =>
-                    <Column
-                        key={column._id}
-                        id={column._id}
-                        name={column.name}
-                        cardList={column.cardList}
-                        createAt={column.createAt}
-                        setUpdate={setUpdate}
-                    />
-                )
+            {columns.sort((a, b) => {
+                let aPosition = a.position;
+                let bPosition = b.position;
+                if (aPosition < bPosition) {
+                    return -1;
+                }
+                if (aPosition > bPosition) {
+                    return 1
+                }
+                return 0;
+            }).map((column) =>
+                <Column
+                    key={column._id}
+                    id={column._id}
+                    name={column.name}
+                    cardList={column.cardList}
+                    createAt={column.createAt}
+                    setUpdate={setUpdate}
+                />
+            )
             }
 
         </div>

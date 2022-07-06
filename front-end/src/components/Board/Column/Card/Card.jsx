@@ -42,7 +42,6 @@ export function Card(
                 <h3 className="client-name">{productType}</h3>
                 <CardDropdown setUpdate={setUpdate} />
             </div>
-            
 
             <h4 className="client-name">{fullName}</h4>
 

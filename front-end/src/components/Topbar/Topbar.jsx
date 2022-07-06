@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Row, Col } from 'antd';
 import Offcanvas from 'react-bootstrap/Offcanvas';
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import './Topbar.css';
 
@@ -31,10 +31,18 @@ export function Topbar() {
 						</Offcanvas.Header>
 						<Offcanvas.Body>
 							<Nav className="justify-content-end flex-grow-1 pe-3 navLink">
-								<Link to='/business' className='navLink'>Negócios</Link>
-								<Link to='/customer' className='navLink'>Clientes</Link>
-								<Link to='/product' className='navLink'>Produtos</Link>
-								<Link to='/report' className='navLink'>Relatórios</Link>
+								<NavLink to='/business' className={({ isActive }) =>
+									isActive ? "navLink selected" : "navLink"
+								}>Negócios</NavLink>
+								<NavLink to='/customer' className={({ isActive }) =>
+									isActive ? "navLink selected" : "navLink"
+								}>Clientes</NavLink>
+								<NavLink to='/product' className={({ isActive }) =>
+									isActive ? "navLink selected" : "navLink"
+								}>Produtos</NavLink>
+								<NavLink to='/report' className={({ isActive }) =>
+									isActive ? "navLink selected" : "navLink"
+								}>Relatórios</NavLink>
 							</Nav>
 							<Form className="d-flex">
 								<FormControl

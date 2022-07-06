@@ -12,13 +12,13 @@ export function ConfirmationModal({ setUpdate }) {
         setVisible(true);
         const columnId = e.currentTarget.parentNode.parentNode.parentNode.previousElementSibling.previousElementSibling.innerText
         setPlaceholder({ columnId })
-        console.log("Placeholder: " + placeholder + "ColumnId: " + columnId)
-        console.log(placeholder.columnId)
+        console.log(columnId)
     };
 
     const handleOk = () => {
         setModalText('Tem certeza que deseja excluir essa coluna?');
         setLoading(true);
+        getCardsByColumnId()
         deleteColumn()
         setTimeout(() => {
             setVisible(false);
@@ -27,23 +27,40 @@ export function ConfirmationModal({ setUpdate }) {
     };
 
     const handleCancel = () => {
-        console.log('Clicked cancel button');
         setVisible(false);
     };
 
-    const deleteColumn = () => {
-        console.log('Vamos deletar a coluna')
-        console.log(placeholder)
-        console.log(placeholder.columnId)
-
-        fetch(`http://localhost:3000/deleteColumnById/${placeholder.columnId}`, {
-            method: 'DELETE'
-        })
+    async function deleteColumn() {
+        await fetch(`http://localhost:3000/deleteColumnById/${placeholder.columnId}`, {
+            method: 'DELETE'})
             .then(res => res.json())
             .then(data => {
                 console.log(data)
             })
         setUpdate(true)
+    }
+
+    async function getCardsByColumnId() {
+        await fetch(`http://localhost:3000/getColumnById/${placeholder.columnId}`, {
+            method: 'GET'})
+            .then(res => res.json())
+            .then(data => {
+                const cardList = data.cardList
+                cardList.forEach(card => {
+                    console.log(card)
+                    deleteCard(card)
+                })
+            })
+    }
+
+    async function deleteCard(cardId) {
+        await fetch(`http://localhost:3000/deleteCard/${cardId}`, {
+        method: 'DELETE'})
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+        })
+    setUpdate(true)
     }
 
     return (

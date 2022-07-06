@@ -3,7 +3,7 @@ import Columns from '../Models/columnSchema.js'
 class ColumnsController {
     static getColumns = (req, res) => {
         Columns.find()
-        .populate('cardList')
+            .populate('cardList')
             .exec((error, Columns) => {
                 if (error) {
                     res.status(400).send({ message: `${error.message}` })
@@ -16,11 +16,11 @@ class ColumnsController {
     static getColumnById = (req, res) => {
         const id = req.params.id
         Columns.findById(id)
-            .exec((error, Columns) => {
+            .exec((error, column) => {
                 if (error) {
                     res.status(400).send({ message: `${error.message} - Id inválido` })
                 } else {
-                    res.status(200).send(Columns)
+                    res.status(200).send(column)
                 }
             })
     }
@@ -36,24 +36,27 @@ class ColumnsController {
         })
     }
 
-    static updateColumnbyId = (req, res) => {
+    static updateColumnById = (req, res) => {
         const id = req.params.id
-        Columns.findByIdAndUpdate(id, { $set: req.body }, (error) => {
+        console.log(req.body)
+        Columns.findByIdAndUpdate( id, { $set: req.body }, { new: true }, (error, column) => {
             if (error) {
-                res.status(500).send({ message: erro.message })
+                res.status(400).send({ message: `${error.message}` })
             } else {
-                res.status(200).send({ message: "Coluna atualizada com sucesso" })
+                res.status(200).send(column)
             }
-        })
+        }
+        )
     }
 
     static deleteColumn = (req, res) => {
         const id = req.params.id
         Columns.findByIdAndDelete(id, (error) => {
             if (error) {
-                res.status(500).send({ message: erro.message })
+                res.status(500).send({ message: error.message })
             } else {
                 res.status(200).send({ message: "Coluna excluída com sucesso" })
+
             }
         })
     }

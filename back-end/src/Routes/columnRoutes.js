@@ -7,7 +7,7 @@ router
     .get("/getAllColumns", columnController.getColumns)
     .post("/createColumn", columnController.createColumn)
     .get("/getColumnById/:id", columnController.getColumnById)
-    .patch("/updateColumnById/:id", columnController.updateColumnbyId)
+    .patch("/updateColumnById/:id", columnController.updateColumnById)
     .delete("/deleteColumnById/:id", columnController.deleteColumn)
 
 export default router

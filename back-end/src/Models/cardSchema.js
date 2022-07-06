@@ -26,7 +26,8 @@ const cardSchema = new mongoose.Schema(
             type: String
         },
         productPrice: {
-            type: Number
+            type: Number,
+            default: 0
         },
         
         //Card

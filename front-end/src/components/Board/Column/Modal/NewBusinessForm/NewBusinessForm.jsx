@@ -1,16 +1,32 @@
 import Form from 'react-bootstrap/Form';
+import { useState, useEffect } from 'react'
 import { Row, Col } from 'antd';
 
 export function NewBusinessForm() {
+
+    function changeCPFlabel() {
+        if (document.getElementById('formCustomerType') !== null) {
+            let formCustomerType = document.getElementById('formCustomerType').value;
+
+            if (formCustomerType === 'Pessoa física') {
+                document.getElementById('form-cpf-label').innerHTML = 'CPF';
+                document.getElementById('formDocumentNumber').placeholder = '000.000.000-00';
+            } else {
+                document.getElementById('form-cpf-label').innerHTML = 'CNPJ';
+                document.getElementById('formDocumentNumber').placeholder = '00.000.000/0000-00';
+            }
+        }
+    }
+
     return (
         <>
             <Form>
 
                 <Row justify='start' gutter={[8, 8]}>
                     <Col xs={24} sm={24} md={12} lg={12} xl={12}>
-                        <Form.Group className="mb-3" controlId="formCustomerType">
-                            <Form.Label>Tipo de Cadastro</Form.Label>
-                            <Form.Select aria-label="Default select example">
+                        <Form.Group className="mb-3" controlId="formCustomerType" >
+                            <Form.Label >Tipo de Cadastro</Form.Label>
+                            <Form.Select aria-label="Default select example" onChange={() => changeCPFlabel()}>
                                 <option value="Pessoa física">Pessoa física</option>
                                 <option value="Pessoa jurídica">Pessoa jurídica</option>
                             </Form.Select>
@@ -19,8 +35,8 @@ export function NewBusinessForm() {
                     </Col>
                     <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                         <Form.Group className="mb-3" controlId="formDocumentNumber">
-                            <Form.Label>CPF</Form.Label>
-                            <Form.Control type="number" placeholder="000.000.000-00" />
+                            <Form.Label id='form-cpf-label'>CPF</Form.Label>
+                            <Form.Control type="number" placeholder="000.000.000-00"/>
                         </Form.Group>
                     </Col>
                 </Row>
@@ -40,7 +56,7 @@ export function NewBusinessForm() {
                         </Form.Group>
                     </Col>
                 </Row>
-                
+
                 <Row justify='start' gutter={[8, 8]}>
                     <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                         <Form.Group className="mb-3" controlId="formProductChoosen">

@@ -6,12 +6,10 @@ const columnsSchema = new mongoose.Schema(
 
         name: {
             type: String,
-            required: true,
             default: 'Sem nome'
         },
-        columnTotal: {
-            type: Number,
-            default: 0
+        position: {
+            type: Number
         },
         cardList: {
             type: [mongoose.Schema.Types.ObjectId], ref: "cards"

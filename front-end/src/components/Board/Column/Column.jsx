@@ -20,15 +20,67 @@ export function Column(
         columnTotal += card.productPrice
     })
 
-    function createColumn() {
-        fetch(`http://localhost:3000/createColumn`, {
-            method: 'POST'
+    async function createColumn(e) {
+        const currentColumn = e.currentTarget.parentElement.parentElement.parentElement
+        const board = currentColumn.parentElement
+        const siblingQuantity = board.children.length
+        const boardChildren = board.children
+        let position = 0
+        let id = ''
+
+        for (let i = 0; i < siblingQuantity; i++) {
+            if (boardChildren[i] === currentColumn) {
+                position = i + 1
+            }
+        }
+
+        await fetch(`http://localhost:3000/createColumn`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                position: position
+            }),
         })
             .then(res => res.json())
             .then(data => {
                 console.log(data)
+                id = data._id
             })
         setUpdate(true)
+        updatePositions(position, id)
+    }
+
+    async function updatePositions(position, id) {
+
+        await fetch(`http://localhost:3000/getAllColumns`, {
+            method: 'GET'
+        })
+            .then(res => res.json())
+            .then(data => {
+                data.map(async (column) => {
+
+                    if (column.position >= position && column._id !== id){
+                        await fetch(`http://localhost:3000/updateColumnById/${column._id}`, {
+                            method: 'PATCH',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                id: column._id,
+                                position: column.position + 1
+                            })
+
+                        }).then(res => res.json())
+                            .then(data => {
+                                console.log(data)
+                                setUpdate(true)
+                            })
+                    }
+                })
+            })
+
     }
 
     return (
@@ -39,7 +91,7 @@ export function Column(
                 <div className="list-title container d-flex justify-content-between">
                     <h2 className="list-title-h2 me-2 column-title">{name}</h2>
                     <DropdownMenu setUpdate={setUpdate} />
-                    <PlusCircleOutlined className='button-transition' onClick={() => createColumn()} />
+                    <PlusCircleOutlined className='button-transition' onClick={(e) => createColumn(e)} />
                 </div>
 
                 <section className="container d-flex justify-content-center">
