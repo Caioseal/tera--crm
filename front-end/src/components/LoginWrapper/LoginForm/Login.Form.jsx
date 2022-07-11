@@ -41,6 +41,7 @@ export function LoginForm() {
             if (response.status === 200) {
                 const data = await response.json()
                 localStorage.setItem('user', JSON.stringify(data.full_name))
+                localStorage.setItem('id', JSON.stringify(data.id))
                 setLogin(true)
                 return <Navigate to="/business" />
             } else {

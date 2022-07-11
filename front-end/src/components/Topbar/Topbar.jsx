@@ -7,13 +7,13 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Row, Col } from 'antd';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link, NavLink } from "react-router-dom";
+import { UserModal } from './UserModal';
 
 import './Topbar.css';
 
 export function Topbar() {
 
-	let user = localStorage.getItem('user')
-	user = JSON.parse(user)
+
 
 	return (
 		<>
@@ -61,9 +61,7 @@ export function Topbar() {
 									<Col span={6} >
 										<Col span={6}><AccountCircleIcon id='logo' className='col-8' /></Col>
 									</Col>
-									<Col span={18}>
-										<p className='userName'><span id='userName'>{user}</span></p>
-									</Col>
+									<UserModal />
 								</Row>
 							</Nav.Link>
 						</Offcanvas.Body>

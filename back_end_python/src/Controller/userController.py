@@ -35,64 +35,93 @@ schema_create = {
 @expects_json(schema_create)
 def create():
     '''cria usuário'''
-    if request.is_json:
-        req = request.get_json()
+    try:
+        if request.is_json:
+            req = request.get_json()
 
-        user = User(full_name = req['full_name'], password = generate_password_hash(req['password']), email = req['email'], email_verified = False, created_date = datetime.now(), deleted = False )
-        db.session.add(user)
-        db.session.commit()
-
+            user = User(full_name = req['full_name'], password = generate_password_hash(req['password']), email = req['email'], email_verified = False, created_date = datetime.now(), deleted = False )
+            db.session.add(user)
+            db.session.commit()
+    except Exception as e:
+        return jsonify({"message": "Erro ao criar usuário"}), 500
+        
     return jsonify({}), 201
 
 def read(id):
     '''pega um usuario'''
-    user = User.query.filter_by(id = id).first()
-    return user_schema.jsonify(user), 200
+    try:
+        user = User.query.filter_by(id = id).first()
+        return user_schema.jsonify(user), 200
+    except Exception as e:
+        return jsonify({"message": "Erro ao buscar usuário"}), 500
 
-    return 200
+    return jsonify({"message": "Usuário retornado com sucesso"}), 200
 
 schema_update = {
     'type': 'object',
     'properties': schema_default
 }
 
-def update(id):
+def updateName(id):
     '''atualizando'''
     if request.is_json:
-        user_req = request.get_json()
-        print(user_req)
-        
-        user = User.query.filter_by(id = id).first()
-        print(user)
+            user_req = request.get_json()
+            print(user_req)
+            user = User.query.filter_by(id = id).first()
 
-        if not user_req['full_name'] is None:
-            print('teste')
-            user.full_name = user_req['full_name']
-        
-        
-        if not user_req['email'] is None:
-            print('teste1')
-            user.email = user_req['email']
-        
-        db.session.commit()
+            if not user_req['full_name'] is None:
+                user.full_name = user_req['full_name']
+            
+            db.session.commit()
+    return jsonify({"message": "Nome atualizado com sucesso"}), 201
 
-    return jsonify({"message": "Usuário atualizado com sucesso"}), 201
+def updateEmail(id):
+    '''atualizando'''
+    if request.is_json:
+            user_req = request.get_json()
+            print(user_req)
+            user = User.query.filter_by(id = id).first()
+
+            if not user_req['email'] is None:
+                user.email = user_req['email']
+            
+            db.session.commit()
+    return jsonify({"message": "Email atualizado com sucesso"}), 201
+
+def updatePassword(id):
+    '''atualizando'''
+    if request.is_json:
+            user_req = request.get_json()
+            print(user_req)
+            user = User.query.filter_by(id = id).first()
+
+            if not user_req['password'] is None:
+                user.password = generate_password_hash(user_req['password'])
+            
+            db.session.commit()
+    return jsonify({"message": "Senha atualizado com sucesso"}), 201   
 
 def destroy(id):
     '''deleta um registro do banco'''
-    user = User.query.filter_by(id = id).first()
-    user.deleted = True
-    user.deleted_date = datetime.now()
+    try:
+        user = User.query.filter_by(id = id).first()
+        user.deleted = True
+        user.deleted_date = datetime.now()
 
-    db.session.commit()
+        db.session.commit()
 
-    return jsonify({"message": "Usuário deletado com sucesso"}), 204
+        return jsonify({"message": "Usuário deletado com sucesso"}), 204
+    except Exception as e:
+        return jsonify({"message": "Erro ao deletar usuário"}), 500
 
 def login():
     if request.is_json:
-        req = request.get_json()
-        user = User.query.filter_by(email = req['email']).first()
-        if check_password_hash(user.password, req['password']) and user.deleted == False:
-            return jsonify({"full_name": user.full_name}), 200
-        else:
+        try:
+            req = request.get_json()
+            user = User.query.filter_by(email = req['email']).first()
+            if check_password_hash(user.password, req['password']) and user.deleted == False:
+                return jsonify({"full_name": user.full_name, "id": user.id}), 200
+            else:
+                return jsonify({}), 401
+        except:
             return jsonify({}), 401
