@@ -11,6 +11,10 @@ import { Link, NavLink } from "react-router-dom";
 import './Topbar.css';
 
 export function Topbar() {
+
+	let user = localStorage.getItem('user')
+	user = JSON.parse(user)
+
 	return (
 		<>
 			<Navbar key='lg' bg="dark" variant='dark' expand='lg' className="mb-1">
@@ -58,7 +62,7 @@ export function Topbar() {
 										<Col span={6}><AccountCircleIcon id='logo' className='col-8' /></Col>
 									</Col>
 									<Col span={18}>
-										<p className='userName'>John Doe</p>
+										<p className='userName'><span id='userName'>{user}</span></p>
 									</Col>
 								</Row>
 							</Nav.Link>

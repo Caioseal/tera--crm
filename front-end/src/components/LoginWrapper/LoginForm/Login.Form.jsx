@@ -30,33 +30,30 @@ export function LoginForm() {
 
         const openNotificationWithIcon = (type) => {
             notification[type]({
-              message: 'Ops! Usuário ou senha incorretos',
-              description:
-                'Verifique seu e-mail e senha.',
+                message: 'Ops! Usuário ou senha incorretos',
+                description:
+                    'Verifique seu e-mail e senha.',
             });
-          };
+        };
 
-        await fetch(`http://localhost:3000/login`, options)
-            .then(response => {
-                response.json()
-                if (response.status == 200) {
-                    localStorage.setItem('user', JSON.stringify(userEmail))
-                    setLogin(true)
-                    return <Navigate to="/business" />
-
-                } else {
-                    openNotificationWithIcon('error')
-                }
-            })
-            .catch(erro => {
-                setError(true)
-                console.log("ERRO " + erro)
-            })
+        try {
+            const response = await fetch('http://localhost:5000/users/login', options)
+            if (response.status === 200) {
+                const data = await response.json()
+                localStorage.setItem('user', JSON.stringify(data.full_name))
+                setLogin(true)
+                return <Navigate to="/business" />
+            } else {
+                openNotificationWithIcon('error')
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     if (isLogged && !error) {
         return <Navigate to="/business" />
-    } 
+    }
 
     return (
         <form className="login-form">

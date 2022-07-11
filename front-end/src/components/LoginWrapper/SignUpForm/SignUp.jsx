@@ -1,3 +1,5 @@
+import { notification } from 'antd';
+
 import './SignUp.css';
 
 export function SignUpForm() {
@@ -25,11 +27,21 @@ export function SignUpForm() {
             body: JSON.stringify(signUpData)
         }
 
+        const openNotificationWithIcon = (type) => {
+            notification[type]({
+              message: 'Usuário criado com sucesso'
+            });
+          };
+
         await fetch(`http://localhost:5000/users/`, options)
         .then(response => {
             response.json()
-            if (response == 201) {
+            if (response.status === 201) {
                 console.log('Usuário criado com sucesso')
+                openNotificationWithIcon('success')
+                document.getElementById('userName').value = ''
+                document.getElementById('userCreateEmail').value = ''
+                document.getElementById('userCreatePassword').value = ''
             } else {
                 console.log('Erro ao criar usuário')
             }

@@ -2,7 +2,7 @@
 from flask import request, jsonify
 from app_module import create_app, db
 from datetime import datetime
-from werkzeug.security import generate_password_hash , check_password_hash
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_expects_json import expects_json
 
 from Models.userSchema import User, User_Schema
@@ -56,23 +56,27 @@ schema_update = {
     'properties': schema_default
 }
 
-@expects_json(schema_update)
 def update(id):
     '''atualizando'''
     if request.is_json:
         user_req = request.get_json()
-
+        print(user_req)
+        
         user = User.query.filter_by(id = id).first()
+        print(user)
 
         if not user_req['full_name'] is None:
+            print('teste')
             user.full_name = user_req['full_name']
-
+        
+        
         if not user_req['email'] is None:
+            print('teste1')
             user.email = user_req['email']
         
         db.session.commit()
 
-    return 201
+    return jsonify({"message": "Usuário atualizado com sucesso"}), 201
 
 def destroy(id):
     '''deleta um registro do banco'''
@@ -82,14 +86,13 @@ def destroy(id):
 
     db.session.commit()
 
-    return 204
+    return jsonify({"message": "Usuário deletado com sucesso"}), 204
 
 def login():
     if request.is_json:
         req = request.get_json()
-        print(req)
         user = User.query.filter_by(email = req['email']).first()
-        if check_password_hash(user.password, req['password']):
-            return jsonify({}), 200
+        if check_password_hash(user.password, req['password']) and user.deleted == False:
+            return jsonify({"full_name": user.full_name}), 200
         else:
             return jsonify({}), 401

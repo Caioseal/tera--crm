@@ -1,5 +1,5 @@
 from flask import Blueprint
-from Controllers.userController import index, create, read, update, destroy,login
+from Controller.userController import index, create, read, update, destroy,login
 
 user_bp = Blueprint('user_bp', __name__)
 
