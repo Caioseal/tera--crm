@@ -9,7 +9,6 @@ from Models.userSchema import User, User_Schema
 
 app = create_app()
 
-#excluindo da listagem os campos que não devem ser expostos na API
 fields_to_exclude = ('password', 'email_verified', 'created_date', 'deleted', 'deleted_date')
 
 user_schema = User_Schema(exclude = fields_to_exclude)

@@ -39,7 +39,7 @@ class ColumnsController {
     static updateColumnById = (req, res) => {
         const id = req.params.id
         console.log(req.body)
-        Columns.findByIdAndUpdate( id, { $set: req.body }, { new: true }, (error, column) => {
+        Columns.findByIdAndUpdate(id, { $set: req.body }, { new: true }, (error, column) => {
             if (error) {
                 res.status(400).send({ message: `${error.message}` })
             } else {
@@ -57,6 +57,25 @@ class ColumnsController {
             } else {
                 res.status(200).send({ message: "Coluna excluída com sucesso" })
 
+            }
+        })
+    }
+
+    static moveCardtoAnotherColumn = (req, res) => {
+        const cardId = req.body.cardId
+        const newColumnId = req.body.newColumnId
+        const oldColumnId = req.body.oldColumnId
+
+        Columns.findByIdAndUpdate(newColumnId, { $push: { cardList: cardId } }, (error) => {
+            if (error) {
+                res.status(500).send({ message: error.message })
+            } else {
+                Columns.findByIdAndUpdate(oldColumnId, { $pull: { cardList: cardId } }, (error) => {
+                    if (error) {
+                        res.status(500).send({ message: error.message })
+                    }
+                    res.status(200).send({ message: "Card movido com sucesso" })
+                })
             }
         })
     }

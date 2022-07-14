@@ -8,6 +8,9 @@ export function Board() {
     const [columns, setColumns] = useState([])
     const [update, setUpdate] = useState(false)
 
+    const [cardId, setCardId] = useState('')
+    const [oldColumnId, setOldColumnId] = useState('')
+
     useEffect(() => {
         fetch('http://localhost:3000/getAllColumns')
             .then(res => res.json())
@@ -15,6 +18,24 @@ export function Board() {
         setUpdate(false)
     }, [update])
 
+    async function moveCardtoAnotherColumnInDatabase(newColumnId) {
+        await fetch(`http://localhost:3000/moveCardtoAnotherColumn/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                cardId: cardId,
+                oldColumnId: oldColumnId,
+                newColumnId: newColumnId
+            })
+        }).then(res => res.json())
+            .then(data => {
+                console.log(data.message)
+            })
+        setCardId('')
+        setOldColumnId('')
+    }
 
     return (
         <div className="board">
@@ -37,6 +58,9 @@ export function Board() {
                     cardList={column.cardList}
                     createAt={column.createAt}
                     setUpdate={setUpdate}
+                    setCardId={setCardId}
+                    setOldColumnId={setOldColumnId}
+                    moveCardtoAnotherColumnInDatabase={moveCardtoAnotherColumnInDatabase}
                 />
             )
             }

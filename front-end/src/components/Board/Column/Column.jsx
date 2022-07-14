@@ -2,6 +2,7 @@ import { DropdownMenu } from './ColumnDropdown/Dropdown'
 import PlusCircleOutlined from '@ant-design/icons/lib/icons/PlusCircleOutlined'
 import { Card } from './Card/Card'
 import { ModalForm } from './Modal/ModalForm'
+import { useEffect, useState } from 'react'
 
 import './Column.css'
 
@@ -12,13 +13,30 @@ export function Column(
         columnTotal = 0,
         cardList = [],
         createAt = '',
-        setUpdate
+        setUpdate,
+        setCardId,
+        setOldColumnId,
+        moveCardtoAnotherColumnInDatabase
     }
 ) {
+
+    async function drop(e) {
+        e.preventDefault()
+        const card_id = e.dataTransfer.getData('card_id')
+        const newColumnId = e.target.id
+        const card = document.getElementById(card_id)
+        e.target.appendChild(card)
+        moveCardtoAnotherColumnInDatabase(newColumnId)
+    }
+
+    function dragOver(e) {
+        e.preventDefault()
+    }
 
     cardList.map((card) => {
         columnTotal += card.productPrice
     })
+
 
     async function createColumn(e) {
         const currentColumn = e.currentTarget.parentElement.parentElement.parentElement
@@ -33,7 +51,6 @@ export function Column(
                 position = i + 1
             }
         }
-
         await fetch(`http://localhost:3000/createColumn`, {
             method: 'POST',
             headers: {
@@ -45,7 +62,6 @@ export function Column(
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 id = data._id
             })
         setUpdate(true)
@@ -53,15 +69,13 @@ export function Column(
     }
 
     async function updatePositions(position, id) {
-
         await fetch(`http://localhost:3000/getAllColumns`, {
             method: 'GET'
         })
             .then(res => res.json())
             .then(data => {
                 data.map(async (column) => {
-
-                    if (column.position >= position && column._id !== id){
+                    if (column.position >= position && column._id !== id) {
                         await fetch(`http://localhost:3000/updateColumnById/${column._id}`, {
                             method: 'PATCH',
                             headers: {
@@ -71,20 +85,17 @@ export function Column(
                                 id: column._id,
                                 position: column.position + 1
                             })
-
                         }).then(res => res.json())
                             .then(data => {
-                                console.log(data)
                                 setUpdate(true)
                             })
                     }
                 })
             })
-
     }
 
     return (
-        <div className="list-wrapper">
+        <div className="list-wrapper" id={id}>
             <div className="list-content">
                 <span className='displayNone'>{id}</span>
                 <span className='displayNone'>{createAt}</span>
@@ -98,7 +109,7 @@ export function Column(
                     <h3 className='total'>R${columnTotal},00</h3>
                 </section>
 
-                <div className="list-card">
+                <div className="list-card" onDrop={drop} onDragOver={dragOver} id={id}>
 
                     {cardList.map((card) =>
                         <Card
@@ -111,6 +122,8 @@ export function Column(
                             productPrice={card.productPrice}
                             nextContact={card.nextContact}
                             setUpdate={setUpdate}
+                            setCardId={setCardId}
+                            setOldColumnId={setOldColumnId}
                         />
                     )}
                 </div>

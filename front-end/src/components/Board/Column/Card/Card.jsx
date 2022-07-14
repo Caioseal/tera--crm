@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { EllipsisOutlined, DollarOutlined, CalendarOutlined } from '@ant-design/icons'
+import { DollarOutlined, CalendarOutlined } from '@ant-design/icons'
 import { CardDropdown } from './CardDropdown/CardDropdown'
 
 import './Card.css'
@@ -24,13 +23,31 @@ export function Card(
         preferedContact = '',
         action = '',
         comment = '',
-        setUpdate
-    }) 
+        setUpdate,
+        setCardId,
+        setOldColumnId
+    }) {
+
+        function dragStart(e) {
+            const oldColumnId = e.target.parentElement.id
+            setOldColumnId(oldColumnId)
+            const cardId = e.target.id
+            setCardId(cardId)
+            e.dataTransfer.setData('card_id', e.target.id)
+        }
     
-    {
+        function dragOver(e) {
+            e.dataTransfer.dropEffect = "move"
+            e.stopPropagation();
+        }
     
     return (
-        <div className="list-item">
+        <div className="list-item"
+        id={id}
+        draggable={true}
+        onDragStart={dragStart}
+        onDragOver={dragOver}
+        >
 
             <span className='displayNone'>{id}</span>
 
