@@ -25,7 +25,8 @@ export function Card(
         comment = '',
         setUpdate,
         setCardId,
-        setOldColumnId
+        setOldColumnId,
+        setModalVisible
     }) {
 
         function dragStart(e) {
@@ -48,10 +49,9 @@ export function Card(
         onDragStart={dragStart}
         onDragOver={dragOver}
         >
-
             <span className='displayNone'>{id}</span>
 
-            <div className={`list-item-priority ${formPriority}`}>
+            <div className={`list-item-priority ${formPriority}`} onClick={() => setModalVisible(true)}>
                 {priorityList[formPriority] || priorityList.high }
             </div>
 

@@ -10,15 +10,18 @@ export function Column(
     {
         id = '',
         name = '',
-        columnTotal = 0,
         cardList = [],
         createAt = '',
         setUpdate,
         setCardId,
         setOldColumnId,
-        moveCardtoAnotherColumnInDatabase
+        moveCardtoAnotherColumnInDatabase,
     }
 ) {
+    const [columnTotal, setColumnTotal] = useState(0)
+    const [updateColumnTotal, setUpdateColumnTotal] = useState(false)
+
+    const [modalVisible, setModalVisible] = useState(false);
 
     async function drop(e) {
         e.preventDefault()
@@ -33,10 +36,19 @@ export function Column(
         e.preventDefault()
     }
 
-    cardList.map((card) => {
-        columnTotal += card.productPrice
-    })
+    useEffect(() => {
+        updtColumnTotal()
+        setUpdateColumnTotal(false)
+    }, [updateColumnTotal])
 
+    function updtColumnTotal() {
+        let columnTotal = 0
+        cardList.map((card) => {
+            columnTotal = card.productPrice + columnTotal
+        })
+        setColumnTotal(columnTotal)
+        setUpdateColumnTotal(true)
+    }
 
     async function createColumn(e) {
         const currentColumn = e.currentTarget.parentElement.parentElement.parentElement
@@ -124,10 +136,11 @@ export function Column(
                             setUpdate={setUpdate}
                             setCardId={setCardId}
                             setOldColumnId={setOldColumnId}
+                            setModalVisible={setModalVisible}
                         />
                     )}
                 </div>
-                <ModalForm setUpdate={setUpdate} />
+                <ModalForm setUpdate={setUpdate} setModalVisible={setModalVisible} modalVisible={modalVisible} />
             </div>
         </div>
     )

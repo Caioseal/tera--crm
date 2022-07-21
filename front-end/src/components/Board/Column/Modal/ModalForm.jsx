@@ -5,35 +5,34 @@ import { NewBusinessForm } from './NewBusinessForm';
 
 import './ModalForm.css';
 
-export function ModalForm({ setUpdate }) {
-    const [visible, setVisible] = useState(false);
+export function ModalForm({ setUpdate, setModalVisible, modalVisible }) {
+    
     const [confirmLoading, setConfirmLoading] = useState(false);
     const [modalText, setModalText] = useState(<NewBusinessForm />);
     const [placeholder, setPlaceholder] = useState('');
     const [cardId, setCardId] = useState('');
 
     function showModal(e) {
-        setVisible(true);
+        setModalVisible(true);
         let columnId = e.currentTarget.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
         setPlaceholder(columnId)
-        console.log(placeholder)
     };
 
     function handleOk(e) {
         setModalText(<NewBusinessForm />);
         setConfirmLoading(true);
         setTimeout(() => {
-            setVisible(false);
+            setModalVisible(false);
             setConfirmLoading(false);
         }, 2000);
         newCard(e.currentTarget)
     };
 
     const handleCancel = () => {
-        setVisible(false);
+        setModalVisible(false);
     };
 
-    function newCard(e) {
+    function newCard() {
         const formCustomerType = document.getElementById('formCustomerType').value;
         const formDocumentNumber = document.getElementById('formDocumentNumber').value;
         const formFullName = document.getElementById('formFullName').value;
@@ -85,7 +84,7 @@ export function ModalForm({ setUpdate }) {
 
             <Modal
                 title="Novo Negócio"
-                visible={visible}
+                visible={modalVisible}
                 onOk={handleOk}
                 confirmLoading={confirmLoading}
                 onCancel={handleCancel}

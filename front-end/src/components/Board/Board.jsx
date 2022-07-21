@@ -11,12 +11,18 @@ export function Board() {
     const [cardId, setCardId] = useState('')
     const [oldColumnId, setOldColumnId] = useState('')
 
+    
+
     useEffect(() => {
-        fetch('http://localhost:3000/getAllColumns')
+        getAllColumns()
+    }, [update])
+
+    async function getAllColumns() {
+        await fetch('http://localhost:3000/getAllColumns')
             .then(res => res.json())
             .then(data => { setColumns(data) })
         setUpdate(false)
-    }, [update])
+    }
 
     async function moveCardtoAnotherColumnInDatabase(newColumnId) {
         await fetch(`http://localhost:3000/moveCardtoAnotherColumn/`, {
@@ -32,6 +38,7 @@ export function Board() {
         }).then(res => res.json())
             .then(data => {
                 console.log(data.message)
+                setUpdate(true)
             })
         setCardId('')
         setOldColumnId('')
@@ -62,9 +69,7 @@ export function Board() {
                     setOldColumnId={setOldColumnId}
                     moveCardtoAnotherColumnInDatabase={moveCardtoAnotherColumnInDatabase}
                 />
-            )
-            }
-
+            )}
         </div>
     )
 }

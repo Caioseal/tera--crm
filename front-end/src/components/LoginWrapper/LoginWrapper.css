@@ -4,7 +4,6 @@ body {
 	height: 100vh;
 	background: url('./img/pexels-tobias-bjørkli-2113566_l.jpg') center center no-repeat fixed;
 	background-size: cover;
-
 }
 
 .clearfix:after,.clearfix:before {
