@@ -1,8 +1,14 @@
 import Dropdown from 'react-bootstrap/Dropdown'
-
+import { notification } from 'antd';
 import './CardDropdown.css'
 
 export function CardDropdown({ setUpdate }) {
+
+    const openNotificationWithIcon = (type, data) => {
+        notification[type]({
+            message: data.message
+        });
+    };
 
     function deleteCard(e) {
         const cardId = e.currentTarget.parentNode.parentNode.parentNode.previousElementSibling.previousElementSibling.innerText
@@ -16,7 +22,7 @@ export function CardDropdown({ setUpdate }) {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data)
+            openNotificationWithIcon('info', data)
         })
         setUpdate(true)
     }

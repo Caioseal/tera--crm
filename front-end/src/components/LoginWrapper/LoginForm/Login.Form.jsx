@@ -37,11 +37,11 @@ export function LoginForm() {
         };
 
         try {
-            const response = await fetch('http://localhost:5000/users/login', options)
+            const response = await fetch('http://localhost:3000/login', options)
             if (response.status === 200) {
                 const data = await response.json()
-                localStorage.setItem('user', JSON.stringify(data.full_name))
-                localStorage.setItem('id', JSON.stringify(data.id))
+                localStorage.setItem('user', JSON.stringify(data.user.name))
+                localStorage.setItem('id', JSON.stringify(data.user._id))
                 setLogin(true)
                 return <Navigate to="/business" />
             } else {

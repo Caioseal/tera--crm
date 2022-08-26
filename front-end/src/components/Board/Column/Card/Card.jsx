@@ -26,7 +26,7 @@ export function Card(
         setUpdate,
         setCardId,
         setOldColumnId,
-        setModalVisible
+        showViewModeModal,
     }) {
 
         function dragStart(e) {
@@ -41,6 +41,9 @@ export function Card(
             e.dataTransfer.dropEffect = "move"
             e.stopPropagation();
         }
+
+        const dateSplited = nextContact.split('-')
+        const dateFormatted = dateSplited[2].substring(0,2) + '/' + dateSplited[1] + '/' + dateSplited[0]
     
     return (
         <div className="list-item"
@@ -51,7 +54,7 @@ export function Card(
         >
             <span className='displayNone'>{id}</span>
 
-            <div className={`list-item-priority ${formPriority}`} onClick={() => setModalVisible(true)}>
+            <div className={`list-item-priority ${formPriority}`} onClick={(showViewModeModal) }>
                 {priorityList[formPriority] || priorityList.high }
             </div>
 
@@ -66,12 +69,12 @@ export function Card(
 
             <div className="list-item-name-align">
                 <DollarOutlined />
-                &nbsp;R$&nbsp;{productPrice},00
+                &nbsp;{productPrice.toLocaleString('pt-BR', {style: 'currency', currency:'BRL'})}
             </div>
 
             <div className="list-item-name-align">
                 <CalendarOutlined />
-                &nbsp;31/12/2000
+                &nbsp;{dateFormatted}
             </div>
         </div>
     )

@@ -9,7 +9,7 @@ const cardSchema = new mongoose.Schema(
             type: String
         },
         documentNumber: {
-            type: Number
+            type: String
         },
         fullName: {
             type: String

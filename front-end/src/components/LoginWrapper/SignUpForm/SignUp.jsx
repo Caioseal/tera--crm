@@ -13,7 +13,7 @@ export function SignUpForm() {
         console.log(fullName, email, password)
 
         const signUpData = {
-            "full_name": fullName,
+            "name": fullName,
             "email": email,
             "password": password
         }
@@ -33,10 +33,10 @@ export function SignUpForm() {
             });
           };
 
-        await fetch(`http://localhost:5000/users/`, options)
+        await fetch(`http://localhost:3000/createUser`, options)
         .then(response => {
             response.json()
-            if (response.status === 201) {
+            if (response.status === 200) {
                 console.log('Usuário criado com sucesso')
                 openNotificationWithIcon('success')
                 document.getElementById('userName').value = ''

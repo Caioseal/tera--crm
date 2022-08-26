@@ -27,7 +27,8 @@ class authController {
 
                 res.status(200).send({
                     message: "Login autorizado",
-                    token
+                    token,
+                    user
                 })
             })
         } catch (erro) {

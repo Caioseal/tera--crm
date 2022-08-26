@@ -16,12 +16,50 @@ export function Column(
         setCardId,
         setOldColumnId,
         moveCardtoAnotherColumnInDatabase,
+        updateColumnTotal,
+        setUpdateColumnTotal,
+        cardData,
+        setCardData,
+        cardViewMode,
+        setCardViewMode
     }
 ) {
     const [columnTotal, setColumnTotal] = useState(0)
-    const [updateColumnTotal, setUpdateColumnTotal] = useState(false)
 
     const [modalVisible, setModalVisible] = useState(false);
+
+    async function showViewModeModal(e) {
+        const cardId = e.currentTarget.previousElementSibling.innerText
+        
+        setCardViewMode(true)
+
+        await fetch(`http://localhost:3000/card/${cardId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json())
+        .then(data => {
+            setModalVisible(true)
+            showData(data)
+        })
+        console.log(cardViewMode)
+    }
+
+    function showData(data) {
+        document.getElementById('formCustomerType').value = data.registerType
+        document.getElementById('formDocumentNumber').value = data.documentNumber
+        document.getElementById('formFullName').value = data.fullName
+        document.getElementById('formCompanyName').value = data.companyName
+        document.getElementById('formProductChoosen').value = data.productType
+        document.getElementById('formPriority').value = data.priority
+        document.getElementById('formPrice').value = data.productPrice.toLocaleString('pr-br', { style: 'currency', currency: 'BRL' })
+        document.getElementById('formNextContact').value = data.nextContact
+        document.getElementById('formPreferedContact').value = data.preferedContact
+        document.getElementById('formNextAction').value = data.action
+        document.getElementById('formComments').value = data.comment
+    }
 
     async function drop(e) {
         e.preventDefault()
@@ -38,7 +76,6 @@ export function Column(
 
     useEffect(() => {
         updtColumnTotal()
-        setUpdateColumnTotal(false)
     }, [updateColumnTotal])
 
     function updtColumnTotal() {
@@ -47,7 +84,7 @@ export function Column(
             columnTotal = card.productPrice + columnTotal
         })
         setColumnTotal(columnTotal)
-        setUpdateColumnTotal(true)
+        setUpdateColumnTotal(false)
     }
 
     async function createColumn(e) {
@@ -109,16 +146,14 @@ export function Column(
     return (
         <div className="list-wrapper" id={id}>
             <div className="list-content">
-                <span className='displayNone'>{id}</span>
-                <span className='displayNone'>{createAt}</span>
                 <div className="list-title container d-flex justify-content-between">
                     <h2 className="list-title-h2 me-2 column-title">{name}</h2>
-                    <DropdownMenu setUpdate={setUpdate} />
+                    <DropdownMenu setUpdate={setUpdate} columnId={id} />
                     <PlusCircleOutlined className='button-transition' onClick={(e) => createColumn(e)} />
                 </div>
 
                 <section className="container d-flex justify-content-center">
-                    <h3 className='total'>R${columnTotal},00</h3>
+                    <h3 className='total'>{columnTotal.toLocaleString('pr-br', { style: 'currency', currency: 'BRL' })}</h3>
                 </section>
 
                 <div className="list-card" onDrop={drop} onDragOver={dragOver} id={id}>
@@ -136,11 +171,13 @@ export function Column(
                             setUpdate={setUpdate}
                             setCardId={setCardId}
                             setOldColumnId={setOldColumnId}
+                            setCardViewMode={setCardViewMode}
+                            showViewModeModal={showViewModeModal}
                             setModalVisible={setModalVisible}
                         />
                     )}
                 </div>
-                <ModalForm setUpdate={setUpdate} setModalVisible={setModalVisible} modalVisible={modalVisible} />
+                <ModalForm setUpdate={setUpdate} setCardViewMode={setCardViewMode} cardViewMode={cardViewMode} setModalVisible={setModalVisible} modalVisible={modalVisible} columnId={id} />
             </div>
         </div>
     )

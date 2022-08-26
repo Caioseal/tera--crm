@@ -35,14 +35,14 @@ export function UserModal() {
 		const id = localStorage.getItem('id');
 		let requestUser
 
-		await fetch(`http://localhost:5000/users/${id}`)
+		await fetch(`http://localhost:3000/getUserById/${id}`)
 			.then(res => res.json())
 			.then(data => {
 				requestUser= data;
 			})
 		
 		if (requestUser.full_name !== document.getElementById('formUserName').value) {
-			await fetch(`http://localhost:5000/users/updatename/${id}`, {
+			await fetch(`http://localhost:3000/updateUserById/${id}`, {
 				method: 'PATCH',
 				headers: {
 					'Content-Type': 'application/json'
@@ -59,7 +59,7 @@ export function UserModal() {
 		
 		if (requestUser.email !== document.getElementById('formUserEmail').value) {
 			console.log(document.getElementById('formUserEmail').value)
-			await fetch(`http://localhost:5000/users/updateemail/${id}`, {
+			await fetch(`http://localhost:3000/updateUserById/${id}`, {
 				method: 'PATCH',
 				headers: {
 					'Content-Type': 'application/json'
@@ -75,7 +75,7 @@ export function UserModal() {
 		}
 
 		if (requestUser.password !== document.getElementById('formUserNewPassword').value) {
-			await fetch(`http://localhost:5000/users/updatepassword/${id}`, {
+			await fetch(`http://localhost:3000/updateUserById/${id}`, {
 				method: 'PATCH',
 				headers: {
 					'Content-Type': 'application/json'

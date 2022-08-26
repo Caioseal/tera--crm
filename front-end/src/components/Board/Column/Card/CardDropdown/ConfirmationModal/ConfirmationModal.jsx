@@ -1,18 +1,29 @@
 import { Modal, Button } from 'antd';
 import Dropdown from 'react-bootstrap/Dropdown'
 import { useState } from 'react';
+import { notification } from 'antd';
 
-export function ConfirmationModal({ setUpdate }) {
+export function ConfirmationModal({ setUpdate, columnId }) {
     const [visible, setVisible] = useState(false);
     const [loading, setLoading] = useState(false);
     const [modalText, setModalText] = useState('Tem certeza que deseja excluir essa coluna?');
     const [placeholder, setPlaceholder] = useState('')
 
-    const showModal = (e) => {
+    const openNotificationWithIcon = (type, data) => {
+        notification[type]({
+            message: data.message
+        })
+    }
+
+    const showModal = async (e) => {
         setVisible(true);
-        const columnId = e.currentTarget.parentNode.parentNode.parentNode.previousElementSibling.previousElementSibling.innerText
-        setPlaceholder({ columnId })
-        console.log(columnId)
+        await fetch(`http://localhost:3000/getColumnById/${columnId}`, {
+            method: 'GET'
+        })
+            .then(res => res.json())
+            .then(async data => {
+                await setPlaceholder(data)
+            })
     };
 
     const handleOk = () => {
@@ -31,18 +42,58 @@ export function ConfirmationModal({ setUpdate }) {
     };
 
     async function deleteColumn() {
-        await fetch(`http://localhost:3000/deleteColumnById/${placeholder.columnId}`, {
-            method: 'DELETE'})
+        await updatePositions(placeholder)
+        await fetch(`http://localhost:3000/deleteColumnById/${placeholder._id}`, {
+            method: 'DELETE'
+        })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                openNotificationWithIcon('info', data)
             })
         setUpdate(true)
     }
 
+    async function updatePositions(placeholder) {
+        await fetch(`http://localhost:3000/getColumnById/${placeholder._id}`, {
+            method: 'GET'
+        })
+            .then(res => res.json())
+            .then(async placeholderObject => {
+                await fetch(`http://localhost:3000/getAllColumns`, {
+                    method: 'GET'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        data.map(async (column) => {
+
+                            if (placeholderObject.position < column.position && column._id !== placeholderObject.columnId) {
+                                console.log(placeholderObject.position)
+                                console.log(column.position)
+                                await fetch(`http://localhost:3000/updateColumnById/${column._id}`, {
+                                    method: 'PATCH',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify({
+                                        id: column._id,
+                                        position: column.position - 1
+                                    })
+                                }).then(res => res.json())
+                                    .then(data => {
+                                        console.log(data)
+                                        setUpdate(true)
+                                    })
+                            }
+                        }
+                        )
+                    })
+            })
+    }
+
     async function getCardsByColumnId() {
-        await fetch(`http://localhost:3000/getColumnById/${placeholder.columnId}`, {
-            method: 'GET'})
+        await fetch(`http://localhost:3000/getColumnById/${placeholder._id}`, {
+            method: 'GET'
+        })
             .then(res => res.json())
             .then(data => {
                 const cardList = data.cardList
@@ -55,12 +106,13 @@ export function ConfirmationModal({ setUpdate }) {
 
     async function deleteCard(cardId) {
         await fetch(`http://localhost:3000/deleteCard/${cardId}`, {
-        method: 'DELETE'})
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
+            method: 'DELETE'
         })
-    setUpdate(true)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+        setUpdate(true)
     }
 
     return (

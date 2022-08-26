@@ -3,34 +3,20 @@ import { Modal } from 'antd';
 import PlusCircleOutlined from '@ant-design/icons/lib/icons/PlusCircleOutlined'
 import { NewBusinessForm } from './NewBusinessForm';
 
+import { FormikForm } from './FormikForm/FormikForm';
+
 import './ModalForm.css';
 
-export function ModalForm({ setUpdate, setModalVisible, modalVisible }) {
+export function ModalForm({ setUpdate, setCardViewMode, modalVisible, setModalVisible, columnId, cardViewMode }) {
     
     const [confirmLoading, setConfirmLoading] = useState(false);
-    const [modalText, setModalText] = useState(<NewBusinessForm />);
-    const [placeholder, setPlaceholder] = useState('');
-    const [cardId, setCardId] = useState('');
 
-    function showModal(e) {
+    const [modalText, setModalText] = useState(<FormikForm/>);
+    //const [modalText, setModalText] = useState(<NewBusinessForm setConfirmLoading={setConfirmLoading} setModalVisible={setModalVisible} newCard={newCard} setCardViewMode={setCardViewMode} cardViewMode={cardViewMode} />);
+
+    function showModal(e) {      
         setModalVisible(true);
-        let columnId = e.currentTarget.parentNode.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
-        setPlaceholder(columnId)
-    };
-
-    function handleOk(e) {
-        setModalText(<NewBusinessForm />);
-        setConfirmLoading(true);
-        setTimeout(() => {
-            setModalVisible(false);
-            setConfirmLoading(false);
-        }, 2000);
-        newCard(e.currentTarget)
-    };
-
-    const handleCancel = () => {
-        setModalVisible(false);
-    };
+    }
 
     function newCard() {
         const formCustomerType = document.getElementById('formCustomerType').value;
@@ -45,7 +31,7 @@ export function ModalForm({ setUpdate, setModalVisible, modalVisible }) {
         const formNextAction = document.getElementById('formNextAction').value;
         const formComments = document.getElementById('formComments').value;
 
-        fetch(`http://localhost:3000/newCardByColumnId/${placeholder}`, {
+        fetch(`http://localhost:3000/newCardByColumnId/${columnId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -64,12 +50,6 @@ export function ModalForm({ setUpdate, setModalVisible, modalVisible }) {
                 comment: formComments,
             })
         })
-            .then(res => res.json())
-            .then(data => {
-                const cardId = data._id
-                setCardId({ cardId });
-            })
-
             setUpdate(true)
     }
 
@@ -84,15 +64,14 @@ export function ModalForm({ setUpdate, setModalVisible, modalVisible }) {
 
             <Modal
                 title="Novo Negócio"
+                style={{ top: 20 }}
                 visible={modalVisible}
-                onOk={handleOk}
+                cardViewMode={cardViewMode}
                 confirmLoading={confirmLoading}
-                onCancel={handleCancel}
-                width={'80%'}
+                footer={null}
+                onCancel={() => setModalVisible(false)}
             >
-
                 <>{modalText}</>
-
             </Modal>
         </>
     );
