@@ -1,5 +1,5 @@
 import express from 'express'
-import columnController from '../controllers/columnController.js'
+import columnController from '../Controllers/columnController.js'
 
 const router = express.Router()
 

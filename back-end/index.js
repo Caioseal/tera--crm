@@ -1,6 +1,5 @@
 import express from "express"
 import db from "./src/Config/dbConnect.js"
-import chalk from 'chalk'
 import cardsRoutes from "./src/Routes/cardsRoutes.js"
 import cors from "cors"
 import userRoutes from "./src/Routes/userRoutes.js"
@@ -12,8 +11,7 @@ const port = process.env.PORT || 3000
 const app = express()
 
 app.listen(port, () => {
-    console.log(chalk.bgCyan(`
-    Servidor local criado com sucesso em: http://localhost:${port}`))
+    console.log('Servidor local criado com sucesso')
 })
 
 const routes = (app) => {
@@ -35,6 +33,5 @@ routes(app)
 
 db.on("error", console.log.bind(console, 'Erro de conexão'))
 db.once("open", () => {
-    console.log(chalk.bgCyan(`    MongoDB Atlas conectado com sucesso
-`))
-})
+    console.log(`MongoDB Atlas conectado com sucesso
+`)})

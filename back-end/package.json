@@ -4,9 +4,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "nodemon server.js",
-    "start": "node back-end/server.js",
-    "build": "script-para-rodar-aqui"
+    "start": "node index",
+    "test": "nodemon index"
   },
   "keywords": [],
   "author": "",

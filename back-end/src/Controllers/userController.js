@@ -1,4 +1,4 @@
-import userSchema from "../models/userSchema.js"
+import userSchema from "../Models/userSchema.js"
 import bcrypt from "bcrypt"
 
 class UserController {
