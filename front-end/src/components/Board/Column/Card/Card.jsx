@@ -1,5 +1,6 @@
 import { DollarOutlined, CalendarOutlined } from '@ant-design/icons'
 import { CardDropdown } from './CardDropdown/CardDropdown'
+import React from 'react'
 
 import './Card.css'
 
@@ -10,7 +11,7 @@ const priorityList = {
 }
 
 export function Card(
-    { id = '',
+    {   id = '',
         registerType = 'Pessoa física',
         formPriority = '',
         documentNumber = '',
@@ -23,7 +24,7 @@ export function Card(
         preferedContact = '',
         action = '',
         comment = '',
-        setUpdate,
+        setUpdateColumns,
         setCardId,
         setOldColumnId,
         showViewModeModal,
@@ -35,22 +36,24 @@ export function Card(
             const cardId = e.target.id
             setCardId(cardId)
             e.dataTransfer.setData('card_id', e.target.id)
-        }
-    
-        function dragOver(e) {
+            e.dataTransfer.effectAllowed = "move";
             e.dataTransfer.dropEffect = "move"
-            e.stopPropagation();
         }
 
-        const dateSplited = nextContact.split('-')
-        const dateFormatted = dateSplited[2].substring(0,2) + '/' + dateSplited[1] + '/' + dateSplited[0]
+        let dateFormatted = ''
+
+        try {
+            const dateSplited = nextContact.split('-')
+            dateFormatted = dateSplited[2].substring(0,2) + '/' + dateSplited[1] + '/' + dateSplited[0]
+        } catch (e) {
+            console.log(e)
+        }
     
     return (
         <div className="list-item"
         id={id}
         draggable={true}
         onDragStart={dragStart}
-        onDragOver={dragOver}
         >
             <span className='displayNone'>{id}</span>
 
@@ -60,7 +63,7 @@ export function Card(
 
             <div className="list-item-name">
                 <h3 className="client-name">{productType}</h3>
-                <CardDropdown setUpdate={setUpdate} />
+                <CardDropdown setUpdateColumns={setUpdateColumns} />
             </div>
 
             <h4 className="client-name">{fullName}</h4>

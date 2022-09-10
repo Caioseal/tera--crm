@@ -1,4 +1,5 @@
 import * as React from "react"
+import { useState } from 'react';
 import { Formik } from "formik"
 import {
     SubmitButton,
@@ -12,9 +13,16 @@ import {
 } from "formik-antd"
 import { message, Row, Col } from "antd"
 
-export function FormikForm() {
+import { LoadingOutlined } from '@ant-design/icons';
+import { Spin } from 'antd';
+
+export function FormikForm({ newCard, setModalVisible, cardViewMode, setCardViewMode }) {
+
+    const [confirmLoading, setConfirmLoading] = useState(false);
 
     const { Option } = Select;
+
+    const antIcon = <LoadingOutlined style={{ color: 'white', fontSize: 14, display: 'flex' }} spin />;
 
     function validateRequired(value) {
         return value ? undefined : "Obrigatório"
@@ -34,36 +42,23 @@ export function FormikForm() {
                 formPreferedContact: "WhatsApp",
                 formComments: ""
             }}
-            onSubmit={(values, actions) => {
+            onSubmit={async (values, actions) => {
+                setConfirmLoading(true)
                 message.info(JSON.stringify(values, null, 4))
-                console.log(values)
+                await newCard(values)
+                setTimeout(() => {
+                    setModalVisible(false);
+                    setConfirmLoading(false);
+                }, 2000);
                 actions.setSubmitting(false)
                 actions.resetForm()
-            }}
-            validate={values => {
-                /* if (!values.formDocumentNumber) {
-                     return { formDocumentNumber: "Obrigatório" }
-                 }
-                 if (!values.formFullName) {
-                     return { formFullName: "Obrigatório" }
-                 }
-                 if (!values.formCompanyName) {
-                     return { formCompanyName: "Obrigatório" }
-                 }
-                 if (!values.formProductPrice) {
-                     return { formProductPrice: "Obrigatório" }
-                 }
-                 if (!values.formNextContact) {
-                     return { formNextContact: "Obrigatório" }
-                 }*/
-                return {}
             }}
             render={() => (
                 <Form
                     layout={'vertical'}
                 >
                     <Row justify='start' gutter={[8, 8]}>
-                        <Col xs={24} sm={24} md={12} lg={8} xl={8}>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                             <FormItem
                                 name={'formCustomerType'}
                                 label={'Tipo de Cadastro'}
@@ -79,7 +74,7 @@ export function FormikForm() {
                                 </Select>
                             </FormItem>
                         </Col>
-                        <Col xs={24} sm={24} md={12} lg={8} xl={8}>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                             <FormItem
                                 name={'formDocumentNumber'}
                                 label={'CPF'}
@@ -88,11 +83,15 @@ export function FormikForm() {
                             >
                                 <Input
                                     name={'formDocumentNumber'}
+                                    type='text'
                                     placeholder="000.000.000-00"
                                 />
                             </FormItem>
                         </Col>
-                        <Col xs={24} sm={24} md={12} lg={8} xl={8}>
+                    </Row>
+
+                    <Row justify='start' gutter={[8, 8]}>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                             <FormItem
                                 name={'formFullName'}
                                 label={'Nome completo'}
@@ -105,10 +104,7 @@ export function FormikForm() {
                                 />
                             </FormItem>
                         </Col>
-                    </Row>
-
-                    <Row justify='start' gutter={[8, 8]}>
-                        <Col xs={24} sm={24} md={12} lg={8} xl={8}>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                             <FormItem
                                 name={'formCompanyName'}
                                 label={'Empresa'}
@@ -121,7 +117,11 @@ export function FormikForm() {
                                 />
                             </FormItem>
                         </Col>
-                        <Col xs={24} sm={24} md={12} lg={8} xl={8}>
+                    </Row>
+
+                    <Row justify='start' gutter={[8, 8]}>
+
+                        <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                             <FormItem
                                 name={'formProductChoosen'}
                                 label={'Produto'}
@@ -137,7 +137,7 @@ export function FormikForm() {
                                 </Select>
                             </FormItem>
                         </Col>
-                        <Col xs={24} sm={24} md={12} lg={6} xl={6}>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                             <FormItem
                                 name={'formPriority'}
                                 label={'Prioridade'}
@@ -147,7 +147,6 @@ export function FormikForm() {
                                 <Select
                                     name='formPriority'
                                     defaultValue={'low'}
-                                    style={{ width: "135%" }}
                                 >
                                     <Option value="low">Baixa prioridade</Option>
                                     <Option value="medium">Média prioridade</Option>
@@ -158,49 +157,34 @@ export function FormikForm() {
                     </Row>
 
                     <Row justify='start' gutter={[8, 8]}>
-                        <Col xs={24} sm={24} md={12} lg={8} xl={8}>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                             <FormItem
                                 name={'formProductPrice'}
                                 label={'Valor'}
                                 required={true}
                                 validate={validateRequired}
-
                             >
                                 <InputNumber
                                     name={'formProductPrice'}
                                     placeholder={'R$ 300,00'}
                                     style={{ width: "100%" }}
+                                    
                                 />
                             </FormItem>
                         </Col>
-                        <Col xs={24} sm={24} md={12} lg={8} xl={8}>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={12}>
                             <FormItem
                                 name={'formNextContact'}
                                 label={'Contato'}
                                 required={true}
                                 validate={validateRequired}
+
                             >
                                 <DatePicker
                                     name={'formNextContact'}
                                     placeholder={'Próximo contato'}
+                                    style={{ width: "100%" }}
                                 />
-                            </FormItem>
-                        </Col>
-                        <Col xs={24} sm={24} md={12} lg={8} xl={8}>
-                            <FormItem
-                                name={'formPreferedContact'}
-                                label={'Forma de contato'}
-                                required={true}
-                                validate={validateRequired}
-                            >
-                                <Select
-                                    name='formPreferedContact'
-                                    defaultValue={'WhatsApp'}
-                                >
-                                    <Option value="WhatsApp">WhatsApp</Option>
-                                    <Option value="Ligação">Ligação</Option>
-                                    <Option value="E-mail">E-mail</Option>
-                                </Select>
                             </FormItem>
                         </Col>
                     </Row>
@@ -211,7 +195,7 @@ export function FormikForm() {
                                 name={'formComments'}
                                 label={'Comentários'}
                             >
-                                <Input.TextArea name={'formComments'} rows={1} />
+                                <Input.TextArea name={'formComments'} rows={2} />
                             </FormItem>
                         </Col>
                     </Row>
@@ -219,7 +203,10 @@ export function FormikForm() {
                     <Row justify="end">
                         <Col>
                             <ResetButton>Limpar</ResetButton>
-                            <SubmitButton>Salvar</SubmitButton>
+                            <SubmitButton>
+                                {confirmLoading ? <Spin indicator={antIcon} /> : ''}
+                                &nbsp;Salvar
+                            </SubmitButton>
                         </Col>
                     </Row>
                 </Form>

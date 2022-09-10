@@ -4,13 +4,11 @@ import { ConfirmationModal } from '../Card/CardDropdown/ConfirmationModal/Confir
 import './Dropdown.css'
 
 
-export function DropdownMenu({ setUpdate, columnId }) {
+export function DropdownMenu({ setUpdateColumns, columnId }) {
 
     function editColumnName(e) {
         let placeholder = e.target
-        console.log(placeholder)
         let columnName = placeholder.parentElement.parentElement.previousElementSibling
-        console.log(columnName)
         columnName.innerHTML = "<input type='text' id='inputNameColumn' value='" + columnName.innerText + "'>"
         document.getElementById('inputNameColumn').focus()
         document.getElementById('inputNameColumn').addEventListener('blur', (e) => {
@@ -35,7 +33,7 @@ export function DropdownMenu({ setUpdate, columnId }) {
             </Dropdown.Toggle>
             <Dropdown.Menu variant='dark'>
                 <Dropdown.Item onClick={editColumnName}>Editar nome</Dropdown.Item>
-                <ConfirmationModal setUpdate={setUpdate} columnId={columnId} />
+                <ConfirmationModal setUpdateColumns={setUpdateColumns} columnId={columnId} />
             </Dropdown.Menu>
         </Dropdown>
     )

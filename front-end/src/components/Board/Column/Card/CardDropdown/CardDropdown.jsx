@@ -2,7 +2,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import { notification } from 'antd';
 import './CardDropdown.css'
 
-export function CardDropdown({ setUpdate }) {
+export function CardDropdown({ setUpdateColumns }) {
 
     const openNotificationWithIcon = (type, data) => {
         notification[type]({
@@ -24,7 +24,7 @@ export function CardDropdown({ setUpdate }) {
         .then(data => {
             openNotificationWithIcon('info', data)
         })
-        setUpdate(true)
+        setUpdateColumns(true)
     }
 
         return (

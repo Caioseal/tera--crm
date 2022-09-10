@@ -3,7 +3,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import { useState } from 'react';
 import { notification } from 'antd';
 
-export function ConfirmationModal({ setUpdate, columnId }) {
+export function ConfirmationModal({ setUpdateColumns, columnId }) {
     const [visible, setVisible] = useState(false);
     const [loading, setLoading] = useState(false);
     const [modalText, setModalText] = useState('Tem certeza que deseja excluir essa coluna?');
@@ -50,7 +50,7 @@ export function ConfirmationModal({ setUpdate, columnId }) {
             .then(data => {
                 openNotificationWithIcon('info', data)
             })
-        setUpdate(true)
+        setUpdateColumns(true)
     }
 
     async function updatePositions(placeholder) {
@@ -81,7 +81,7 @@ export function ConfirmationModal({ setUpdate, columnId }) {
                                 }).then(res => res.json())
                                     .then(data => {
                                         console.log(data)
-                                        setUpdate(true)
+                                        setUpdateColumns(true)
                                     })
                             }
                         }
@@ -112,7 +112,8 @@ export function ConfirmationModal({ setUpdate, columnId }) {
             .then(data => {
                 console.log(data)
             })
-        setUpdate(true)
+            //VERIFICAR SE PRECISA DE ATUALIZAÇÃO
+        setUpdateColumns(true)
     }
 
     return (

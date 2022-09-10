@@ -4,8 +4,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
+    "test": "nodemon server.js",
+    "start": "node back-end/server.js",
     "build": "script-para-rodar-aqui"
   },
   "keywords": [],

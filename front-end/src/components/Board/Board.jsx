@@ -6,22 +6,21 @@ import './Board.css'
 
 export function Board() {
     const [columns, setColumns] = useState([])
-    const [update, setUpdate] = useState(false)
+    const [updateColumns, setUpdateColumns] = useState(false)
 
     const [cardId, setCardId] = useState('')
     const [oldColumnId, setOldColumnId] = useState('')
 
-    const [updateColumnTotal, setUpdateColumnTotal] = useState(false)
-
-    const [cardIdViewMode, setCardIdViewMode] = useState('')
-    const [cardData, setCardData] = useState({})
-
     const [cardViewMode, setCardViewMode] = useState(false)
+
+    const [count, setCount] = useState(0);
 
     useEffect(() => {
         getAllColumns()
-        moveCardtoAnotherColumnInDatabase()
-    }, [update])
+        setCount(count + 1)
+        console.log(count)
+    }, [updateColumns])
+
 
     const options = {
         method: 'GET',
@@ -34,11 +33,11 @@ export function Board() {
         await fetch('http://localhost:3000/getAllColumns/', options)
             .then(res => res.json())
             .then(data => { setColumns(data) })
-        setUpdate(false)
+        setUpdateColumns(false)
     }
 
     async function moveCardtoAnotherColumnInDatabase(newColumnId) {
-        if (newColumnId != undefined) {
+        if (newColumnId !== undefined) {
             await fetch(`http://localhost:3000/moveCardtoAnotherColumn/`, {
                 method: 'POST',
                 headers: {
@@ -49,14 +48,10 @@ export function Board() {
                     oldColumnId: oldColumnId,
                     newColumnId: newColumnId
                 })
-            }).then(res => res.json())
-                .then(data => {
-                    console.log(data.message)
-                    setUpdate(false)
-                })
+            })
             setCardId('')
             setOldColumnId('')
-            setUpdateColumnTotal(true)
+            getAllColumns()
         }
     }
 
@@ -74,26 +69,20 @@ export function Board() {
                     }
                     return 0;
                 }).map((column) =>
+
                     <Column
                         key={column._id}
+                        
                         id={column._id}
-                        name={column.name}
-                        cardList={column.cardList}
-                        createAt={column.createAt}
-                        setUpdate={setUpdate}
-                        update={update}
+
+                        setUpdateColumns={setUpdateColumns}
                         setCardId={setCardId}
                         setOldColumnId={setOldColumnId}
                         moveCardtoAnotherColumnInDatabase={moveCardtoAnotherColumnInDatabase}
-                        updateColumnTotal={updateColumnTotal}
-                        setUpdateColumnTotal={setUpdateColumnTotal}
-                        cardData={cardData}
-                        setCardData={setCardData}
-                        cardIdViewMode={cardIdViewMode}
-                        setCardIdViewMode={setCardIdViewMode}
                         cardViewMode={cardViewMode}
                         setCardViewMode={setCardViewMode}
                     />
+
                 )}
             </div>
         )
