@@ -23,7 +23,7 @@ export function ModalForm(
     }
 
     async function newCard(values) {
-        await fetch(`http://localhost:3000/newCardByColumnId/${columnId}`, {
+        await fetch(`https://tera-crm-back-end.herokuapp.com/newCardByColumnId/${columnId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

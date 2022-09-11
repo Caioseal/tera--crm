@@ -33,7 +33,7 @@ export function SignUpForm() {
             });
           };
 
-        await fetch(`http://localhost:3000/createUser`, options)
+        await fetch(`https://tera-crm-back-end.herokuapp.com/createUser`, options)
         .then(response => {
             response.json()
             if (response.status === 200) {

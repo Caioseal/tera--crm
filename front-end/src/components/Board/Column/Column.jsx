@@ -27,7 +27,7 @@ export function Column(
     }, [])
 
     async function getColumns() {
-        fetch(`http://localhost:3000/getColumnById/${id}`, {
+        fetch(`https://tera-crm-back-end.herokuapp.com/getColumnById/${id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -80,7 +80,7 @@ async function createColumn(e) {
             position = i + 1
         }
     }
-    await fetch(`http://localhost:3000/createColumn`, {
+    await fetch(`https://tera-crm-back-end.herokuapp.com/createColumn`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -98,14 +98,14 @@ async function createColumn(e) {
 }
 
 async function updatePositions(position, id) {
-    await fetch(`http://localhost:3000/getAllColumns`, {
+    await fetch(`https://tera-crm-back-end.herokuapp.com/getAllColumns`, {
         method: 'GET'
     })
         .then(res => res.json())
         .then(data => {
             data.map(async (column) => {
                 if (column.position >= position && column._id !== id) {
-                    await fetch(`http://localhost:3000/updateColumnById/${column._id}`, {
+                    await fetch(`https://tera-crm-back-end.herokuapp.com/updateColumnById/${column._id}`, {
                         method: 'PATCH',
                         headers: {
                             'Content-Type': 'application/json'

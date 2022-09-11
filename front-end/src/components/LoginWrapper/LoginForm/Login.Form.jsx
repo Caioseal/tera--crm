@@ -37,7 +37,7 @@ export function LoginForm() {
         };
 
         try {
-            const response = await fetch('http://localhost:3000/login', options)
+            const response = await fetch('https://tera-crm-back-end.herokuapp.com/login', options)
             if (response.status === 200) {
                 const data = await response.json()
                 localStorage.setItem('user', JSON.stringify(data.user.name))

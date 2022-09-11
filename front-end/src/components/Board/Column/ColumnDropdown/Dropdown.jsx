@@ -15,7 +15,7 @@ export function DropdownMenu({ setUpdateColumns, columnId }) {
             columnName.innerHTML = e.currentTarget.value
             let columnTitle = columnName.innerHTML
     
-            fetch(`http://localhost:3000/updateColumnById/${columnId}`, {
+            fetch(`https://tera-crm-back-end.herokuapp.com/updateColumnById/${columnId}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'

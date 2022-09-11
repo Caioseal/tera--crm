@@ -17,7 +17,7 @@ export function ConfirmationModal({ setUpdateColumns, columnId }) {
 
     const showModal = async (e) => {
         setVisible(true);
-        await fetch(`http://localhost:3000/getColumnById/${columnId}`, {
+        await fetch(`https://tera-crm-back-end.herokuapp.com/getColumnById/${columnId}`, {
             method: 'GET'
         })
             .then(res => res.json())
@@ -43,7 +43,7 @@ export function ConfirmationModal({ setUpdateColumns, columnId }) {
 
     async function deleteColumn() {
         await updatePositions(placeholder)
-        await fetch(`http://localhost:3000/deleteColumnById/${placeholder._id}`, {
+        await fetch(`https://tera-crm-back-end.herokuapp.com/deleteColumnById/${placeholder._id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
@@ -54,12 +54,12 @@ export function ConfirmationModal({ setUpdateColumns, columnId }) {
     }
 
     async function updatePositions(placeholder) {
-        await fetch(`http://localhost:3000/getColumnById/${placeholder._id}`, {
+        await fetch(`https://tera-crm-back-end.herokuapp.com/getColumnById/${placeholder._id}`, {
             method: 'GET'
         })
             .then(res => res.json())
             .then(async placeholderObject => {
-                await fetch(`http://localhost:3000/getAllColumns`, {
+                await fetch(`https://tera-crm-back-end.herokuapp.com/getAllColumns`, {
                     method: 'GET'
                 })
                     .then(res => res.json())
@@ -69,7 +69,7 @@ export function ConfirmationModal({ setUpdateColumns, columnId }) {
                             if (placeholderObject.position < column.position && column._id !== placeholderObject.columnId) {
                                 console.log(placeholderObject.position)
                                 console.log(column.position)
-                                await fetch(`http://localhost:3000/updateColumnById/${column._id}`, {
+                                await fetch(`https://tera-crm-back-end.herokuapp.com/updateColumnById/${column._id}`, {
                                     method: 'PATCH',
                                     headers: {
                                         'Content-Type': 'application/json'
@@ -91,7 +91,7 @@ export function ConfirmationModal({ setUpdateColumns, columnId }) {
     }
 
     async function getCardsByColumnId() {
-        await fetch(`http://localhost:3000/getColumnById/${placeholder._id}`, {
+        await fetch(`https://tera-crm-back-end.herokuapp.com/getColumnById/${placeholder._id}`, {
             method: 'GET'
         })
             .then(res => res.json())
@@ -105,7 +105,7 @@ export function ConfirmationModal({ setUpdateColumns, columnId }) {
     }
 
     async function deleteCard(cardId) {
-        await fetch(`http://localhost:3000/deleteCard/${cardId}`, {
+        await fetch(`https://tera-crm-back-end.herokuapp.com/deleteCard/${cardId}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

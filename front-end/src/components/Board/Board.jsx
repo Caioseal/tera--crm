@@ -30,7 +30,7 @@ export function Board() {
     }
 
     async function getAllColumns() {
-        await fetch('http://localhost:3000/getAllColumns/', options)
+        await fetch('https://tera-crm-back-end.herokuapp.com/getAllColumns/', options)
             .then(res => res.json())
             .then(data => { setColumns(data) })
         setUpdateColumns(false)
@@ -38,7 +38,7 @@ export function Board() {
 
     async function moveCardtoAnotherColumnInDatabase(newColumnId) {
         if (newColumnId !== undefined) {
-            await fetch(`http://localhost:3000/moveCardtoAnotherColumn/`, {
+            await fetch(`https://tera-crm-back-end.herokuapp.com/moveCardtoAnotherColumn/`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

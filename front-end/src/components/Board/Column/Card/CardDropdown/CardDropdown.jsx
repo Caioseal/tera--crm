@@ -14,7 +14,7 @@ export function CardDropdown({ setUpdateColumns }) {
         const cardId = e.currentTarget.parentNode.parentNode.parentNode.previousElementSibling.previousElementSibling.innerText
         console.log(cardId)
 
-        fetch(`http://localhost:3000/deleteCard/${cardId}`, {
+        fetch(`https://tera-crm-back-end.herokuapp.com/deleteCard/${cardId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'

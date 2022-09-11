@@ -1,7 +1,7 @@
 import mongoose from "mongoose"
-import dotenv from "dotenv-safe"
+import * as dotenv from 'dotenv'
 
-dotenv.config({silent: true})
+dotenv.config()
 
 mongoose.connect(process.env.MONGODB_URI)
 
