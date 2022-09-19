@@ -1,6 +1,7 @@
 import { DollarOutlined, CalendarOutlined } from '@ant-design/icons'
 import { CardDropdown } from './CardDropdown/CardDropdown'
 import React from 'react'
+import { useState, useEffect } from 'react'
 
 import './Card.css'
 
@@ -11,7 +12,7 @@ const priorityList = {
 }
 
 export function Card(
-    {   id = '',
+    {   id,
         registerType = 'Pessoa física',
         formPriority = '',
         documentNumber = '',

@@ -67,8 +67,6 @@ export function ConfirmationModal({ setUpdateColumns, columnId }) {
                         data.map(async (column) => {
 
                             if (placeholderObject.position < column.position && column._id !== placeholderObject.columnId) {
-                                console.log(placeholderObject.position)
-                                console.log(column.position)
                                 await fetch(`https://tera-crm-back-end.herokuapp.com/updateColumnById/${column._id}`, {
                                     method: 'PATCH',
                                     headers: {
@@ -80,7 +78,6 @@ export function ConfirmationModal({ setUpdateColumns, columnId }) {
                                     })
                                 }).then(res => res.json())
                                     .then(data => {
-                                        console.log(data)
                                         setUpdateColumns(true)
                                     })
                             }
@@ -98,7 +95,6 @@ export function ConfirmationModal({ setUpdateColumns, columnId }) {
             .then(data => {
                 const cardList = data.cardList
                 cardList.forEach(card => {
-                    console.log(card)
                     deleteCard(card)
                 })
             })
@@ -110,9 +106,7 @@ export function ConfirmationModal({ setUpdateColumns, columnId }) {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
             })
-            //VERIFICAR SE PRECISA DE ATUALIZAÇÃO
         setUpdateColumns(true)
     }
 

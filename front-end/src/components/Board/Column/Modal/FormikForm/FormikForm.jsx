@@ -42,10 +42,9 @@ export function FormikForm({ newCard, setModalVisible, cardViewMode, setCardView
                 formPreferedContact: "WhatsApp",
                 formComments: ""
             }}
-            onSubmit={async (values, actions) => {
+            onSubmit={ (values, actions) => {
                 setConfirmLoading(true)
-                message.info(JSON.stringify(values, null, 4))
-                await newCard(values)
+                newCard(values)
                 setTimeout(() => {
                     setModalVisible(false);
                     setConfirmLoading(false);

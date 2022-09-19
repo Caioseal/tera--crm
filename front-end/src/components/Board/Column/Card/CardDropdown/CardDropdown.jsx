@@ -12,7 +12,6 @@ export function CardDropdown({ setUpdateColumns }) {
 
     function deleteCard(e) {
         const cardId = e.currentTarget.parentNode.parentNode.parentNode.previousElementSibling.previousElementSibling.innerText
-        console.log(cardId)
 
         fetch(`https://tera-crm-back-end.herokuapp.com/deleteCard/${cardId}`, {
             method: 'DELETE',
@@ -33,7 +32,7 @@ export function CardDropdown({ setUpdateColumns }) {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu variant='dark'>
-                    <Dropdown.Item onClick={() => console.log('cliquei no editar')} >Editar negócio</Dropdown.Item>
+                    <Dropdown.Item>Editar negócio</Dropdown.Item>
                     <Dropdown.Item onClick={(e) => deleteCard(e)}>Excluir negócio</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>

@@ -8,7 +8,7 @@ import './ModalForm.css';
 
 export function ModalForm(
     {
-        setUpdate,
+        setUpdateColumns,
         modalVisible,
         setModalVisible,
         columnId,
@@ -16,7 +16,13 @@ export function ModalForm(
     }
 ) {
 
-    const [modalText, setModalText] = useState(<FormikForm newCard={newCard} setModalVisible={setModalVisible} cardViewMode={cardViewMode} />);
+    const [modalText, setModalText] = useState(
+        <FormikForm
+            newCard={newCard}
+            setModalVisible={setModalVisible}
+            cardViewMode={cardViewMode}
+        />
+    )
 
     function showModal(e) {
         setModalVisible(true);
@@ -42,7 +48,7 @@ export function ModalForm(
                 comment: values.formComments,
             })
         })
-        setUpdate(true)
+        setUpdateColumns(true)
     }
 
     return (

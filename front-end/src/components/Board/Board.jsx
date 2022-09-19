@@ -11,16 +11,9 @@ export function Board() {
     const [cardId, setCardId] = useState('')
     const [oldColumnId, setOldColumnId] = useState('')
 
-    const [cardViewMode, setCardViewMode] = useState(false)
-
-    const [count, setCount] = useState(0);
-
     useEffect(() => {
         getAllColumns()
-        setCount(count + 1)
-        console.log(count)
     }, [updateColumns])
-
 
     const options = {
         method: 'GET',
@@ -48,42 +41,41 @@ export function Board() {
                     oldColumnId: oldColumnId,
                     newColumnId: newColumnId
                 })
-            })
-            setCardId('')
-            setOldColumnId('')
-            getAllColumns()
+            }).then(res => res.json())
+                .then (data => {
+                    setCardId('')
+                    setOldColumnId('')
+                })
         }
     }
 
-        return (
-            <div className="board">
+    return (
+        <div className="board">
 
-                {columns.sort((a, b) => {
-                    let aPosition = a.position;
-                    let bPosition = b.position;
-                    if (aPosition < bPosition) {
-                        return -1;
-                    }
-                    if (aPosition > bPosition) {
-                        return 1
-                    }
-                    return 0;
-                }).map((column) =>
+            {columns.sort((a, b) => {
+                let aPosition = a.position;
+                let bPosition = b.position;
+                if (aPosition < bPosition) {
+                    return -1;
+                }
+                if (aPosition > bPosition) {
+                    return 1
+                }
+                return 0;
+            }).map((column) =>
 
-                    <Column
-                        key={column._id}
-                        
-                        id={column._id}
+                <Column
+                    key={column._id}
+                    id={column._id}
+                    name={column.name}
+                    cardList={column.cardList}
+                    setUpdateColumns={setUpdateColumns}
+                    setCardId={setCardId}
+                    setOldColumnId={setOldColumnId}
+                    moveCardtoAnotherColumnInDatabase={moveCardtoAnotherColumnInDatabase}
+                />
 
-                        setUpdateColumns={setUpdateColumns}
-                        setCardId={setCardId}
-                        setOldColumnId={setOldColumnId}
-                        moveCardtoAnotherColumnInDatabase={moveCardtoAnotherColumnInDatabase}
-                        cardViewMode={cardViewMode}
-                        setCardViewMode={setCardViewMode}
-                    />
-
-                )}
-            </div>
-        )
-    }
+            )}
+        </div>
+    )
+}
